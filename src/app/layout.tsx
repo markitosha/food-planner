@@ -34,7 +34,7 @@ export default function RootLayout({
           radius={'large'}
           panelBackground={'translucent'}
         >
-          <Container>{children}</Container>
+          {children}
         </Theme>
         <SpeedInsights />
       </body>
