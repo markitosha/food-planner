@@ -10,7 +10,24 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...compat.extends('next'),
+  ...compat.config({
+    extends: [
+      'next/core-web-vitals',
+      'next/typescript',
+      'plugin:@next/next/recommended',
+      'plugin:react/recommended',
+      'plugin:react/jsx-runtime',
+      'plugin:react-hooks/recommended',
+      'plugin:prettier/recommended',
+      'plugin:import/recommended',
+      'plugin:jsx-a11y/recommended',
+    ],
+    rules: {
+      'prettier/prettier': ['error', { singleQuote: true }],
+      'import/no-unresolved': 'off',
+    },
+  })
 ];
 
 export default eslintConfig;
