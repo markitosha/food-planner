@@ -27,3 +27,9 @@ export type Ingredient = {
   id: number;
   deleted: boolean;
 };
+
+export type Recipe = {
+  id: number;
+  name: string;
+  description: string;
+};
