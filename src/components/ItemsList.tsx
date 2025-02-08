@@ -1,11 +1,4 @@
-import {
-  Card,
-  Container,
-  Flex,
-  Heading,
-  Section,
-  Text,
-} from '@radix-ui/themes';
+import { Card, Container, Flex, Heading, Text } from '@radix-ui/themes';
 
 type Props = {
   data: {

@@ -38,6 +38,7 @@ async function getAllIngredients(mealPlanId: string) {
         name: ingredient.name,
         amount: `${parseFloat(ingredient.amount)} ${ingredient.unit}`,
         checked: ingredient.checked,
+        deleted: false,
       });
 
       return acc;
@@ -48,7 +49,7 @@ async function getAllIngredients(mealPlanId: string) {
     prevItem.amount = `${prevAmount} + ${parseFloat(ingredient.amount)} ${ingredient.unit}`;
 
     return acc;
-  }, [] as Ingredient[]);
+  }, [] as Partial<Ingredient>[]);
 
   return data;
 }

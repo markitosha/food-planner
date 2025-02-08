@@ -1,4 +1,4 @@
-import { Container, Theme } from '@radix-ui/themes';
+import { Theme } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import { SpeedInsights } from '@vercel/speed-insights/next';

@@ -1,6 +1,5 @@
 import ActionButtons from '@/app/plans/[id]/@shopping/components/ActionButtons';
 import CreateShoppingList from '@/app/plans/[id]/@shopping/components/CreateShoppingList';
-import getAllIngredients from '@/db/getAllIngredients';
 import getMeals from '@/db/getMeals';
 import getShoppingList from '@/db/getShoppingList';
 import { Box, Table, Text } from '@radix-ui/themes';
