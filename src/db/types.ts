@@ -23,5 +23,7 @@ export type Ingredient = {
   amount: string;
   product_id: number;
   name: string;
-  unit: string;
+  checked: boolean;
+  id: number;
+  deleted: boolean;
 };
