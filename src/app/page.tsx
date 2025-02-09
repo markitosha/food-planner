@@ -17,6 +17,7 @@ export default async function Home() {
           href: `/plans/${item.id}`,
         }))}
         title={family?.name}
+        newHref={'/plans/new'}
       />
     </Section>
   );

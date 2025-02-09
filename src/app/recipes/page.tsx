@@ -15,6 +15,7 @@ export default async function Page() {
           href: `/recipes/${recipe.id}`,
         }))}
         title={'Recipes'}
+        newHref={'/recipes/new'}
       />
     </Section>
   );
