@@ -8,7 +8,7 @@ export default async function createRecipe(recipe: HFRecipe) {
   const description = recipe.headline;
 
   const data =
-    await sql`INSERT INTO recipes (name, description) VALUES (${name}, ${description}) RETURNING id;`;
+    await sql`INSERT INTO recipes (name, description, hf_json) VALUES (${name}, ${description}, ${recipe}) RETURNING id;`;
 
   return data.at(0)?.id;
 }
