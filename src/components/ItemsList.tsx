@@ -1,3 +1,5 @@
+'use client';
+
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import {
   Button,
@@ -9,6 +11,7 @@ import {
   TextField,
   CheckboxCards,
 } from '@radix-ui/themes';
+import { useMemo, useState } from 'react';
 
 type Props = {
   data: {
@@ -35,6 +38,12 @@ export default function ItemsList({
   disabled,
 }: Props) {
   const CardComponent = checkbox ? CheckboxCards.Item : Card;
+  const [search, setSearch] = useState('');
+
+  const filteredData = useMemo(
+    () => data.filter((item) => item.name.toLowerCase().includes(search)),
+    [data, search],
+  );
 
   return (
     <Container size={'1'} p={'1'}>
@@ -47,6 +56,8 @@ export default function ItemsList({
               width: '100%',
             }}
             disabled={disabled}
+            defaultValue={search}
+            onChange={(e) => setSearch(e.currentTarget.value)}
           >
             <TextField.Slot>
               <MagnifyingGlassIcon height="16" width="16" />
@@ -65,7 +76,7 @@ export default function ItemsList({
           disabled={disabled}
         >
           <Flex direction={'column'} gap={'2'}>
-            {data.map((item) => (
+            {filteredData.map((item) => (
               <CardComponent
                 value={item.id.toString()}
                 key={item.id}

@@ -28,7 +28,7 @@ export default async function Page({
   }
 
   return (
-    <Table.Root>
+    <Table.Root variant={'surface'}>
       <Table.Header>
         <Table.Row>
           <Table.ColumnHeaderCell>Name</Table.ColumnHeaderCell>
