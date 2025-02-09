@@ -44,6 +44,9 @@ export default async function createNewRecipe({
   await createSteps(recipe, id);
 
   revalidatePath('/recipes');
+  revalidatePath('/');
+  revalidatePath('/plans/new');
+
   redirect('/recipes');
 
   return res;
