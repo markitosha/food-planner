@@ -1,3 +1,4 @@
+import Navigation from '@/components/Navigation';
 import { Theme } from '@radix-ui/themes';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
@@ -34,6 +35,7 @@ export default function RootLayout({
           radius={'large'}
           panelBackground={'translucent'}
         >
+          <Navigation />
           {children}
         </Theme>
         <SpeedInsights />
