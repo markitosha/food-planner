@@ -2,7 +2,7 @@ import { HFRecipe } from '@/db/createNewRecipe';
 import getDababase from '@/db/getDababase';
 
 export const getName = (name: string) => {
-  const splittedName = name.split(/ til | \(/);
+  const splittedName = name.replace('*', '').split(/ til | \(/);
 
   return splittedName.at(0) || name;
 };
