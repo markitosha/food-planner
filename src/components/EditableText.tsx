@@ -1,17 +1,19 @@
 'use client';
 
-import { TextArea } from '@radix-ui/themes';
+import { TextArea, TextField } from '@radix-ui/themes';
 import { useEffect, useRef, useState } from 'react';
 
 export default function EditableText({
   children,
-  onBlur
+  onBlur,
+type = 'textarea'
 }: {
   children: string | number;
   onBlur?: (value: string) => void;
+  type?: 'input' | 'textarea';
 }) {
   const [editing, setEditing] = useState(false);
-  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<any>(null);
 
   useEffect(() => {
     if (editing) {
@@ -19,7 +21,7 @@ export default function EditableText({
     }
   }, [editing]);
 
-  if (editing) {
+  if (editing && type === 'textarea') {
     return (
       <TextArea
         ref={inputRef}
@@ -31,6 +33,20 @@ export default function EditableText({
       />
     );
   }
+
+
+    if (editing && type === 'input') {
+        return (
+            <TextField.Root
+                ref={inputRef}
+                defaultValue={children.toString()}
+                onBlur={(event) => {
+                    onBlur?.(event.target.value);
+                    setEditing(false)
+                }}
+            />
+        );
+    }
 
   return (
     <span

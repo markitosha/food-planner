@@ -8,5 +8,5 @@ export default function StepEditableIndex({ step, id }: {
     step: Step,
     id: string,
 }) {
-    return <EditableText onBlur={value => updateStepIndex(step, value, id)}>{step.step_index}</EditableText>;
+    return <EditableText type={'input'} onBlur={value => updateStepIndex(step, value, id)}>{step.step_index}</EditableText>;
 }
