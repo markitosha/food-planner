@@ -1,6 +1,6 @@
 'use server';
 
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 import { Ingredient } from '@/db/types';
 
 export type IngredientRaw = {
@@ -12,7 +12,7 @@ export type IngredientRaw = {
 };
 
 async function getAllIngredients(mealPlanId: string) {
-  const sql = getDababase();
+  const sql = getDatabase();
   const rawData = (await sql`SELECT
                             products.id AS product_id,
                             products.name AS name,

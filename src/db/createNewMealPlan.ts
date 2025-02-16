@@ -1,6 +1,6 @@
 'use server';
 
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -9,7 +9,7 @@ export default async function createNewMealPlan(formData: FormData) {
   const description = formData.get('description') as string;
   const recipes = formData.getAll('recipes') as string[];
 
-  const sql = getDababase();
+  const sql = getDatabase();
 
   const data =
     await sql`INSERT INTO meal_plans (name, description, family_id) VALUES (${name}, ${description}, 1) RETURNING id;`;

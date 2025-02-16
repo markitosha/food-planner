@@ -1,8 +1,8 @@
 import { HFRecipe } from '@/db/createNewRecipe';
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 
 export default async function updateUnits(recipe: HFRecipe) {
-  const sql = getDababase();
+  const sql = getDatabase();
 
   const units = recipe.yields.reduce((acc, item) => {
     item.ingredients.forEach((i) => {

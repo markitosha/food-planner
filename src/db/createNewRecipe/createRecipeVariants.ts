@@ -1,11 +1,11 @@
 import { HFRecipe } from '@/db/createNewRecipe';
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 
 export default async function createRecipeVariants(
   recipe: HFRecipe,
   id: number,
 ) {
-  const sql = getDababase();
+  const sql = getDatabase();
 
   const variants = recipe.yields.map((variant) => `${variant.yields} People`);
   const vData = await sql.transaction(

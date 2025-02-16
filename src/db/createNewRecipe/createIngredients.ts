@@ -1,6 +1,6 @@
 import { HFRecipe } from '@/db/createNewRecipe';
 import { getName } from '@/db/createNewRecipe/updateProducts';
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 import { NeonQueryFunction } from '@neondatabase/serverless';
 
 async function createVariantIngredients(
@@ -29,7 +29,7 @@ export default async function createIngredients(
   recipe: HFRecipe,
   vData: { id: number; variant: string; yields: number }[],
 ) {
-  const sql = getDababase();
+  const sql = getDatabase();
 
   const ingredientsNames = recipe.ingredients.reduce(
     (acc, item) => {

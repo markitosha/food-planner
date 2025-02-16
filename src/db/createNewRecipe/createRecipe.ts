@@ -1,8 +1,8 @@
 import { HFRecipe } from '@/db/createNewRecipe';
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 
 export default async function createRecipe(recipe: HFRecipe) {
-  const sql = getDababase();
+  const sql = getDatabase();
 
   const name = recipe.name;
   const description = recipe.headline;

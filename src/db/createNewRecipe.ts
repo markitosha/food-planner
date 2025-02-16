@@ -47,7 +47,7 @@ export default async function createNewRecipe({
   revalidatePath('/');
   revalidatePath('/plans/new');
 
-  redirect('/recipes');
+  redirect('/recipes/' + id);
 
   return res;
 }

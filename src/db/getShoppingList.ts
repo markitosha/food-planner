@@ -1,10 +1,10 @@
 'use server';
 
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 import { Ingredient } from '@/db/types';
 
 async function getShoppingList(id: string) {
-  const sql = getDababase();
+  const sql = getDatabase();
   const data = (await sql`SELECT
         products.name,
         shopping.id,

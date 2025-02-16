@@ -1,5 +1,5 @@
 import { HFRecipe } from '@/db/createNewRecipe';
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 
 export const getName = (name: string) => {
   const splittedName = name.replace('*', '').split(/ til | \(/);
@@ -8,7 +8,7 @@ export const getName = (name: string) => {
 };
 
 export default async function updateProducts(recipe: HFRecipe) {
-  const sql = getDababase();
+  const sql = getDatabase();
 
   const products = recipe.ingredients.map((ingredient) =>
     getName(ingredient.name),

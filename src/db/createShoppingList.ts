@@ -1,13 +1,13 @@
 'use server';
 
 import getAllIngredients from '@/db/getAllIngredients';
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 import { revalidatePath } from 'next/cache';
 
 export default async function createShoppingList(mealPlanId: string) {
   const ingredients = await getAllIngredients(mealPlanId);
 
-  const sql = getDababase();
+  const sql = getDatabase();
 
   const data = await sql.transaction(
     ingredients.map(

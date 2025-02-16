@@ -1,6 +1,6 @@
 'use server';
 
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 import { Ingredient } from '@/db/types';
 import { revalidatePath } from 'next/cache';
 
@@ -9,7 +9,7 @@ export default async function updateShoppingList({
   deleted = false,
   id,
 }: Ingredient) {
-  const sql = getDababase();
+  const sql = getDatabase();
 
   const data =
     await sql`UPDATE shopping SET checked = ${checked}, deleted = ${deleted} WHERE id=${id};`;

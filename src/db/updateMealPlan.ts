@@ -1,6 +1,6 @@
 'use server';
 
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 import { Meal } from '@/db/types';
 import { revalidatePath } from 'next/cache';
 
@@ -13,7 +13,7 @@ export default async function updateMealPlan(
   const description = formData.get('description') as string;
   const recipes = formData.getAll('recipes') as string[];
 
-  const sql = getDababase();
+  const sql = getDatabase();
 
   await sql`UPDATE meal_plans
             SET name        = ${name},

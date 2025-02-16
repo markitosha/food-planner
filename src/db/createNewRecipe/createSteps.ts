@@ -1,8 +1,8 @@
 import { HFRecipe } from '@/db/createNewRecipe';
-import getDababase from '@/db/getDababase';
+import getDatabase from '@/db/getDatabase';
 
 export default async function createSteps(recipe: HFRecipe, id: number) {
-  const sql = getDababase();
+  const sql = getDatabase();
 
   return sql.transaction(
     recipe.steps.map((step) => {
