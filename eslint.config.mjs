@@ -26,6 +26,7 @@ const eslintConfig = [
     rules: {
       'prettier/prettier': ['error', { singleQuote: true }],
       'import/no-unresolved': 'off',
+      'jsx-a11y/ no-static-element-interactions': 'warn',
     },
   })
 ];

@@ -1,5 +1,6 @@
 import Ingredients from '@/app/recipes/[id]/components/Ingredients';
 import RemoveButton from '@/app/recipes/[id]/components/RemoveButton';
+import StepEditableText from '@/app/recipes/[id]/components/StepEditableText';
 import getRecipe from '@/db/getRecipe';
 import { Box, Flex, Heading, Table, Text } from '@radix-ui/themes';
 
@@ -37,7 +38,9 @@ export default async function Page({
           {recipe.steps.map((step) => (
             <Table.Row key={step.id}>
               <Table.Cell>{step.step_index}</Table.Cell>
-              <Table.Cell>{step.instruction}</Table.Cell>
+              <Table.Cell>
+                <StepEditableText step={step} id={id} />
+              </Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>

@@ -37,14 +37,16 @@ type Variant = {
   ingredients: Ingredient[];
 };
 
+export type Step = {
+  id: number;
+  step_index: number;
+  instruction: string;
+};
+
 export type Recipe = {
   id: number;
   name: string;
   description: string;
   variants: Variant[];
-  steps: {
-    id: number;
-    step_index: number;
-    instruction: string;
-  }[];
+  steps: Step[];
 };
