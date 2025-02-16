@@ -26,10 +26,25 @@ export type Ingredient = {
   checked: boolean;
   id: number;
   deleted: boolean;
+  product: string;
+  unit: string;
+  comment: string;
+};
+
+type Variant = {
+  id: number;
+  name: string;
+  ingredients: Ingredient[];
 };
 
 export type Recipe = {
   id: number;
   name: string;
   description: string;
+  variants: Variant[];
+  steps: {
+    id: number;
+    step_index: number;
+    instruction: string;
+  }[];
 };
