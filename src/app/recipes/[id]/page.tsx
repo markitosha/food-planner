@@ -4,7 +4,6 @@ import Ingredients from '@/app/recipes/[id]/components/Ingredients';
 import RemoveButton from '@/app/recipes/[id]/components/RemoveButton';
 import StepEditableIndex from '@/app/recipes/[id]/components/StepEditableIndex';
 import StepEditableText from '@/app/recipes/[id]/components/StepEditableText';
-import EditableText from '@/components/EditableText';
 import getRecipe from '@/db/getRecipe';
 import { Box, Flex, Heading, Table, Text } from '@radix-ui/themes';
 

@@ -52,7 +52,7 @@ export default function Ingredients({ recipe }: { recipe: Recipe }) {
           </SegmentedControl.Item>
         ))}
       </SegmentedControl.Root>
-      <Flex justify={'between'} direction={{
+      <Flex justify={'between'} gap={'4'} direction={{
           initial: 'column',
           sm: 'row',
       }}>
