@@ -1,19 +1,13 @@
 'use client';
 
 import { TextArea } from '@radix-ui/themes';
-import { ReactNode, useEffect, useRef, useState } from 'react';
-
-function EmptyWrapper({ children }: { children: string }) {
-  return <>{children}</>;
-}
+import { useEffect, useRef, useState } from 'react';
 
 export default function EditableText({
-  Wrapper = EmptyWrapper,
   children,
   onBlur
 }: {
-  Wrapper?: ({ children }: { children: string }) => ReactNode;
-  children: string;
+  children: string | number;
   onBlur?: (value: string) => void;
 }) {
   const [editing, setEditing] = useState(false);
@@ -29,7 +23,7 @@ export default function EditableText({
     return (
       <TextArea
         ref={inputRef}
-        defaultValue={children}
+        defaultValue={children.toString()}
         onBlur={(event) => {
           onBlur?.(event.target.value);
           setEditing(false)
@@ -44,7 +38,7 @@ export default function EditableText({
         setEditing(true);
       }}
     >
-      <Wrapper>{children}</Wrapper>
+      {children}
     </span>
   );
 }
