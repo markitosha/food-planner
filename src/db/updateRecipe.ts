@@ -12,7 +12,7 @@ export default async function updateRecipe({
   description?: string;
   recipeId: string;
 }) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   if (name) {
     await sql`UPDATE recipes

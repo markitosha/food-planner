@@ -4,7 +4,7 @@ import getDatabase from '@/db/getDatabase';
 import { Meal } from '@/db/types';
 
 async function getMeals(id: string) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
   const data = (await sql`SELECT
                  meals.id,
                  recipe_variants.id AS recipe_variant_id,

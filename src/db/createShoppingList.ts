@@ -7,7 +7,7 @@ import { revalidatePath } from 'next/cache';
 export default async function createShoppingList(mealPlanId: string) {
   const ingredients = await getAllIngredients(mealPlanId);
 
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   const data = await sql.transaction(
     ingredients.map(

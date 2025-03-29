@@ -8,7 +8,7 @@ export const getName = (name: string) => {
 };
 
 export default async function updateProducts(recipe: HFRecipe) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   const products = recipe.ingredients.map((ingredient) =>
     getName(ingredient.name),

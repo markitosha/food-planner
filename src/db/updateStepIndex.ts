@@ -9,7 +9,7 @@ export default async function updateStepIndex(
   value: string,
   recipeId: string,
 ) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   await sql`UPDATE steps
             SET step_index = step_index + 1

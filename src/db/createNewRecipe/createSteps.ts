@@ -2,7 +2,7 @@ import { HFRecipe } from '@/db/createNewRecipe';
 import getDatabase from '@/db/getDatabase';
 
 export default async function createSteps(recipe: HFRecipe, id: number) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   return sql.transaction(
     recipe.steps.map((step) => {

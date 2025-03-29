@@ -9,7 +9,7 @@ export default async function updateShoppingList({
   deleted = false,
   id,
 }: Ingredient) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   const data =
     await sql`UPDATE shopping SET checked = ${checked}, deleted = ${deleted} WHERE id=${id};`;

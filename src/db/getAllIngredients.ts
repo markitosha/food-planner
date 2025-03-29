@@ -12,7 +12,7 @@ export type IngredientRaw = {
 };
 
 async function getAllIngredients(mealPlanId: string) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
   const rawData = (await sql`SELECT
                             products.id AS product_id,
                             products.name AS name,

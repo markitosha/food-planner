@@ -5,7 +5,7 @@ export default async function createRecipeVariants(
   recipe: HFRecipe,
   id: number,
 ) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   const variants = recipe.yields.map((variant) => `${variant.yields} People`);
   const vData = await sql.transaction(

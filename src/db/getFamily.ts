@@ -4,7 +4,7 @@ import getDatabase from '@/db/getDatabase';
 import { Family } from '@/db/types';
 
 async function getFamily() {
-  const sql = getDatabase();
+  const sql = await getDatabase();
   const data =
     (await sql`SELECT * FROM families where id=1 limit 1;`) as Family[];
 

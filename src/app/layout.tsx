@@ -1,9 +1,11 @@
 import Navigation from '@/components/Navigation';
+import { stackServerApp } from '@/stack';
 import { Theme } from '@radix-ui/themes';
-import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { StackProvider, StackTheme } from '@stackframe/stack';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import './globals.css';
+import type { Metadata } from 'next';
+import { Geist, Geist_Mono } from 'next/font/google';
 import '@radix-ui/themes/styles.css';
 
 const geistSans = Geist({
@@ -29,16 +31,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <Theme
-          accentColor={'jade'}
-          grayColor={'slate'}
-          radius={'large'}
-          panelBackground={'translucent'}
-        >
-          <Navigation />
-          {children}
-        </Theme>
-        <SpeedInsights />
+        <StackProvider app={stackServerApp}>
+          <StackTheme>
+            <Theme
+              accentColor={'jade'}
+              grayColor={'slate'}
+              radius={'large'}
+              panelBackground={'translucent'}
+            >
+              <Navigation />
+              {children}
+            </Theme>
+            <SpeedInsights />
+          </StackTheme>
+        </StackProvider>
       </body>
     </html>
   );

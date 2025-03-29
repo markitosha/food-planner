@@ -2,7 +2,7 @@ import { HFRecipe } from '@/db/createNewRecipe';
 import getDatabase from '@/db/getDatabase';
 
 export default async function createRecipe(recipe: HFRecipe) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   const name = recipe.name;
   const description = recipe.headline;

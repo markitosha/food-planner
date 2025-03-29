@@ -9,7 +9,7 @@ export default async function updateStep(
   value: string,
   recipeId: string,
 ) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   await sql`UPDATE steps
             SET instruction = ${value}

@@ -29,7 +29,7 @@ export default async function createIngredients(
   recipe: HFRecipe,
   vData: { id: number; variant: string; yields: number }[],
 ) {
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   const ingredientsNames = recipe.ingredients.reduce(
     (acc, item) => {

@@ -13,7 +13,7 @@ export default async function updateMealPlan(
   const description = formData.get('description') as string;
   const recipes = formData.getAll('recipes') as string[];
 
-  const sql = getDatabase();
+  const sql = await getDatabase();
 
   await sql`UPDATE meal_plans
             SET name        = ${name},
