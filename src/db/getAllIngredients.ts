@@ -18,6 +18,7 @@ async function getAllIngredients(mealPlanId: string) {
                             products.name AS name,
                             SUM(ingredients.amount) AS amount,
                             units.name AS unit,
+                            units.id AS unit_id,
                             COALESCE(shopping.checked, FALSE) AS checked  -- Ensure checked is always returned
                           FROM meals
                                  JOIN recipe_variants ON meals.recipe_variant_id = recipe_variants.id

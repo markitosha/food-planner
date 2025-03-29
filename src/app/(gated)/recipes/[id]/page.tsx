@@ -5,6 +5,8 @@ import RemoveButton from '@/app/(gated)/recipes/[id]/components/RemoveButton';
 import StepEditableIndex from '@/app/(gated)/recipes/[id]/components/StepEditableIndex';
 import StepEditableText from '@/app/(gated)/recipes/[id]/components/StepEditableText';
 import getRecipe from '@/db/getRecipe';
+import { getAllProducts } from '@/db/product';
+import { getAllUnits } from '@/db/unit';
 import { Box, Flex, Heading, Table, Text } from '@radix-ui/themes';
 
 export default async function Page({
@@ -14,6 +16,8 @@ export default async function Page({
 }) {
   const { id } = await params;
   const recipe = await getRecipe(id);
+  const units = await getAllUnits();
+  const products = await getAllProducts();
 
   if (!recipe) {
     return <Text>Recipe not found</Text>;
@@ -32,7 +36,7 @@ export default async function Page({
         </Box>
         <RemoveButton id={recipe.id} />
       </Flex>
-      <Ingredients recipe={recipe} />
+      <Ingredients recipe={recipe} units={units} products={products} />
       <Table.Root variant={'surface'}>
         <Table.Header>
           <Table.Row>

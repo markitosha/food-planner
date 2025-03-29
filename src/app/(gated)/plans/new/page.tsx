@@ -1,5 +1,5 @@
 import PlanForm from '@/components/PlanForm';
-import getAllRecipes from '@/db/getAllRecipes';
+import { getAllRecipes } from '@/db/recipe';
 import { Container, Flex, Heading, Section } from '@radix-ui/themes';
 
 export default async function Page() {

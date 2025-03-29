@@ -1,5 +1,5 @@
 import ItemsList from '@/components/items-list';
-import getAllRecipes from '@/db/getAllRecipes';
+import { getAllRecipes } from '@/db/recipe';
 
 export default async function Page() {
   const recipes = await getAllRecipes();

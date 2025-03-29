@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation';
 const Tabs = [
   { href: '/plans', label: 'Plans' },
   { href: '/recipes', label: 'Recipes' },
-  { href: '/handler/account-settings', label: 'Account settings' },
   { href: '/families', label: 'Families' },
+  { href: '/handler/account-settings', label: 'Account' },
 ];
 
 export default function Navigation() {

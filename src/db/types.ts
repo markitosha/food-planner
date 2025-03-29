@@ -28,6 +28,7 @@ export type Ingredient = {
   deleted: boolean;
   product: string;
   unit: string;
+  unit_id: number;
   comment: string;
 };
 
@@ -63,3 +64,13 @@ export type User = {
 };
 
 export type FamilyMemberUser = FamilyMember & User;
+
+export type Unit = {
+  id: number;
+  name: string;
+};
+
+export type Product = {
+  id: number;
+  name: string;
+};

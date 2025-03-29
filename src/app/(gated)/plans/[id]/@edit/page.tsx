@@ -1,5 +1,5 @@
 import PlanForm from '@/components/PlanForm';
-import getAllRecipes from '@/db/getAllRecipes';
+import { getAllRecipes } from '@/db/recipe';
 import getMeals from '@/db/getMeals';
 import getPlan from '@/db/getPlan';
 import getShoppingList from '@/db/getShoppingList';

@@ -1,8 +1,15 @@
 'use client';
 
-import { Ingredient, Recipe } from '@/db/types';
-import { DataList, Flex, SegmentedControl } from '@radix-ui/themes';
+import { Ingredient, Product, Recipe, Unit } from '@/db/types';
+import {
+  DataList,
+  Flex,
+  SegmentedControl,
+  Select,
+  TextField,
+} from '@radix-ui/themes';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 
 function splitArray(arr: any[]) {
   const mid = Math.floor(arr.length / 2);
@@ -12,11 +19,81 @@ function splitArray(arr: any[]) {
   return [firstHalf, secondHalf];
 }
 
-function IngredientList({ ingredients }: { ingredients: Ingredient[] }) {
+function IngredientEdit({
+  ingredient,
+  units,
+  products,
+}: {
+  ingredient: Ingredient;
+  units: Unit[];
+  products: Product[];
+}) {
+  const [editing, setEditing] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!editing) {
+      return;
+    }
+
+    const handler = (event: MouseEvent) => {
+      if (
+        ref.current &&
+        !ref.current.contains(event.target as Node) &&
+        // hack to prevent closing when clicking on the select
+        event.target !== document.body
+      ) {
+        setEditing(false);
+      }
+    };
+
+    document.addEventListener('click', handler);
+
+    return () => {
+      document.removeEventListener('click', handler);
+    };
+  }, [editing]);
+
   return (
-    <DataList.Root>
-      {ingredients.map((ingredient) => (
-        <DataList.Item key={ingredient.id}>
+    <DataList.Item onClick={() => setEditing(true)} ref={ref}>
+      {editing ? (
+        <>
+          <DataList.Label>
+            <Select.Root defaultValue={ingredient.product_id.toString()}>
+              <Select.Trigger />
+              <Select.Content>
+                {products.map((product) => (
+                  <Select.Item value={product.id.toString()} key={product.id}>
+                    {product.name}
+                  </Select.Item>
+                ))}
+              </Select.Content>
+            </Select.Root>
+          </DataList.Label>
+          <DataList.Value>
+            <Flex gap={'1'}>
+              <TextField.Root
+                defaultValue={ingredient.amount}
+                type={'number'}
+                style={{
+                  width: '50px',
+                }}
+              />
+              <Select.Root defaultValue={ingredient.unit_id.toString()}>
+                <Select.Trigger />
+                <Select.Content>
+                  {units.map((unit) => (
+                    <Select.Item value={unit.id.toString()} key={unit.id}>
+                      {unit.name}
+                    </Select.Item>
+                  ))}
+                </Select.Content>
+              </Select.Root>
+            </Flex>
+          </DataList.Value>
+        </>
+      ) : (
+        <>
           <DataList.Label>
             {ingredient.product}{' '}
             {ingredient.comment ? `(${ingredient.comment})` : ''}
@@ -24,13 +101,44 @@ function IngredientList({ ingredients }: { ingredients: Ingredient[] }) {
           <DataList.Value>
             {ingredient.amount} {ingredient.unit}
           </DataList.Value>
-        </DataList.Item>
+        </>
+      )}
+    </DataList.Item>
+  );
+}
+
+function IngredientList({
+  ingredients,
+  units,
+  products,
+}: {
+  ingredients: Ingredient[];
+  units: Unit[];
+  products: Product[];
+}) {
+  return (
+    <DataList.Root>
+      {ingredients.map((ingredient) => (
+        <IngredientEdit
+          ingredient={ingredient}
+          key={ingredient.id}
+          units={units}
+          products={products}
+        />
       ))}
     </DataList.Root>
   );
 }
 
-export default function Ingredients({ recipe }: { recipe: Recipe }) {
+export default function Ingredients({
+  recipe,
+  units,
+  products,
+}: {
+  recipe: Recipe;
+  units: Unit[];
+  products: Product[];
+}) {
   const searchParams = useSearchParams();
   const router = useRouter();
   const variant = searchParams.get('variant');
@@ -63,8 +171,16 @@ export default function Ingredients({ recipe }: { recipe: Recipe }) {
           sm: 'row',
         }}
       >
-        <IngredientList ingredients={firstHalf} />
-        <IngredientList ingredients={secondHalf} />
+        <IngredientList
+          ingredients={firstHalf}
+          units={units}
+          products={products}
+        />
+        <IngredientList
+          ingredients={secondHalf}
+          units={units}
+          products={products}
+        />
       </Flex>
     </>
   );
