@@ -1,4 +1,4 @@
-import Navigation from '@/components/Navigation';
+import Navigation from '@/components/navigation';
 import { stackServerApp } from '@/stack';
 import { Theme } from '@radix-ui/themes';
 import { StackProvider, StackTheme } from '@stackframe/stack';

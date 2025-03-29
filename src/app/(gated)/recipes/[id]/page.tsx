@@ -1,9 +1,9 @@
-import EditableName from '@/app/recipes/[id]/components/EditableName';
-import EditableSubtitle from '@/app/recipes/[id]/components/EditableSubtitle';
-import Ingredients from '@/app/recipes/[id]/components/Ingredients';
-import RemoveButton from '@/app/recipes/[id]/components/RemoveButton';
-import StepEditableIndex from '@/app/recipes/[id]/components/StepEditableIndex';
-import StepEditableText from '@/app/recipes/[id]/components/StepEditableText';
+import EditableName from '@/app/(gated)/recipes/[id]/components/EditableName';
+import EditableSubtitle from '@/app/(gated)/recipes/[id]/components/EditableSubtitle';
+import Ingredients from '@/app/(gated)/recipes/[id]/components/Ingredients';
+import RemoveButton from '@/app/(gated)/recipes/[id]/components/RemoveButton';
+import StepEditableIndex from '@/app/(gated)/recipes/[id]/components/StepEditableIndex';
+import StepEditableText from '@/app/(gated)/recipes/[id]/components/StepEditableText';
 import getRecipe from '@/db/getRecipe';
 import { Box, Flex, Heading, Table, Text } from '@radix-ui/themes';
 

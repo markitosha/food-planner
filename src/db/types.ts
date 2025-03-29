@@ -50,3 +50,16 @@ export type Recipe = {
   variants: Variant[];
   steps: Step[];
 };
+
+export type FamilyMember = {
+  user_id: number;
+  family_id: number;
+};
+
+export type User = {
+  id: number;
+  name: string;
+  email: string;
+};
+
+export type FamilyMemberUser = FamilyMember & User;

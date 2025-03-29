@@ -1,4 +1,4 @@
-import ItemsList from '@/components/ItemsList';
+import ItemsList from '@/components/items-list';
 import getAllRecipes from '@/db/getAllRecipes';
 
 export default async function Page() {

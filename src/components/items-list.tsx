@@ -17,7 +17,7 @@ type Props = {
   data: {
     id: number;
     name: string;
-    description: string;
+    description?: string;
     href?: string;
   }[];
   title?: string;
@@ -26,6 +26,7 @@ type Props = {
   buttonLabel?: string;
   defaultValue?: string[];
   disabled?: boolean;
+  emptyText?: string;
 };
 
 export default function ItemsList({
@@ -36,6 +37,7 @@ export default function ItemsList({
   buttonLabel,
   defaultValue,
   disabled,
+  emptyText,
 }: Props) {
   const CardComponent = checkbox ? CheckboxCards.Item : Card;
   const [search, setSearch] = useState('');
@@ -69,6 +71,11 @@ export default function ItemsList({
             </Button>
           )}
         </Flex>
+        {filteredData.length === 0 && (
+          <Text align={'center'} color={'gray'}>
+            {emptyText || 'No items found'}
+          </Text>
+        )}
         <CheckboxCards.Root
           variant={'classic'}
           name={'recipes'}

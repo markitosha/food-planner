@@ -1,6 +1,6 @@
 'use client';
 
-import ItemsList from '@/components/ItemsList';
+import ItemsList from '@/components/items-list';
 import createNewMealPlan from '@/db/createNewMealPlan';
 import { Meal, MealPlan, Recipe } from '@/db/types';
 import updateMealPlan from '@/db/updateMealPlan';
