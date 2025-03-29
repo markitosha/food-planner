@@ -1,5 +1,6 @@
 'use client';
 
+import { updateIngredient } from '@/db/ingredient';
 import { Ingredient, Product, Recipe, Unit } from '@/db/types';
 import {
   DataList,
@@ -30,19 +31,32 @@ function IngredientEdit({
 }) {
   const [editing, setEditing] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const amountRef = useRef<HTMLInputElement>(null);
+  const productIdRef = useRef<number>(ingredient.product_id);
+  const unitIdRef = useRef<number>(ingredient.unit_id);
 
   useEffect(() => {
     if (!editing) {
       return;
     }
 
-    const handler = (event: MouseEvent) => {
+    const handler = async (event: MouseEvent) => {
       if (
         ref.current &&
         !ref.current.contains(event.target as Node) &&
         // hack to prevent closing when clicking on the select
         event.target !== document.body
       ) {
+        const update = {
+          amount: amountRef.current!.value,
+          product_id: productIdRef.current ?? undefined,
+          unit_id: unitIdRef.current ?? undefined,
+        } as Partial<Ingredient>;
+
+        await updateIngredient({
+          ...ingredient,
+          ...update,
+        });
         setEditing(false);
       }
     };
@@ -59,7 +73,12 @@ function IngredientEdit({
       {editing ? (
         <>
           <DataList.Label>
-            <Select.Root defaultValue={ingredient.product_id.toString()}>
+            <Select.Root
+              defaultValue={ingredient.product_id.toString()}
+              onValueChange={(value) =>
+                (productIdRef.current = parseInt(value))
+              }
+            >
               <Select.Trigger />
               <Select.Content>
                 {products.map((product) => (
@@ -78,8 +97,12 @@ function IngredientEdit({
                 style={{
                   width: '50px',
                 }}
+                ref={amountRef}
               />
-              <Select.Root defaultValue={ingredient.unit_id.toString()}>
+              <Select.Root
+                defaultValue={ingredient.unit_id.toString()}
+                onValueChange={(value) => (unitIdRef.current = parseInt(value))}
+              >
                 <Select.Trigger />
                 <Select.Content>
                   {units.map((unit) => (
