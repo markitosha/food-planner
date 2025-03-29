@@ -4,9 +4,19 @@ import EditableText from '@/components/EditableText';
 import { Step } from '@/db/types';
 import updateStepIndex from '@/db/updateStepIndex';
 
-export default function StepEditableIndex({ step, id }: {
-    step: Step,
-    id: string,
+export default function StepEditableIndex({
+  step,
+  id,
+}: {
+  step: Step;
+  id: string;
 }) {
-    return <EditableText type={'input'} onBlur={value => updateStepIndex(step, value, id)}>{step.step_index}</EditableText>;
+  return (
+    <EditableText
+      type={'input'}
+      onBlur={(value) => updateStepIndex(step, value, id)}
+    >
+      {step.step_index}
+    </EditableText>
+  );
 }

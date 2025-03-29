@@ -1,19 +1,19 @@
 'use client';
 
 import { TextArea, TextField } from '@radix-ui/themes';
-import { useEffect, useRef, useState } from 'react';
+import { Ref, useEffect, useRef, useState } from 'react';
 
 export default function EditableText({
   children,
   onBlur,
-type = 'textarea'
+  type = 'textarea',
 }: {
   children: string | number;
   onBlur?: (value: string) => void;
   type?: 'input' | 'textarea';
 }) {
   const [editing, setEditing] = useState(false);
-  const inputRef = useRef<any>(null);
+  const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
 
   useEffect(() => {
     if (editing) {
@@ -24,29 +24,28 @@ type = 'textarea'
   if (editing && type === 'textarea') {
     return (
       <TextArea
-        ref={inputRef}
+        ref={inputRef as Ref<HTMLTextAreaElement>}
         defaultValue={children.toString()}
         onBlur={(event) => {
           onBlur?.(event.target.value);
-          setEditing(false)
+          setEditing(false);
         }}
       />
     );
   }
 
-
-    if (editing && type === 'input') {
-        return (
-            <TextField.Root
-                ref={inputRef}
-                defaultValue={children.toString()}
-                onBlur={(event) => {
-                    onBlur?.(event.target.value);
-                    setEditing(false)
-                }}
-            />
-        );
-    }
+  if (editing && type === 'input') {
+    return (
+      <TextField.Root
+        ref={inputRef as Ref<HTMLInputElement>}
+        defaultValue={children.toString()}
+        onBlur={(event) => {
+          onBlur?.(event.target.value);
+          setEditing(false);
+        }}
+      />
+    );
+  }
 
   return (
     <span

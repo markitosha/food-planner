@@ -5,28 +5,29 @@ import { DataList, Flex, SegmentedControl } from '@radix-ui/themes';
 import { useRouter, useSearchParams } from 'next/navigation';
 
 function splitArray(arr: any[]) {
-    const mid = Math.floor(arr.length / 2);
-    const firstHalf = arr.slice(0, mid);
-    const secondHalf = arr.slice(mid);
-    return [firstHalf, secondHalf];
+  const mid = Math.floor(arr.length / 2);
+  const firstHalf = arr.slice(0, mid);
+  const secondHalf = arr.slice(mid);
+
+  return [firstHalf, secondHalf];
 }
 
 function IngredientList({ ingredients }: { ingredients: Ingredient[] }) {
-    return (
-        <DataList.Root>
-            {ingredients.map((ingredient) => (
-                <DataList.Item key={ingredient.id}>
-                    <DataList.Label>
-                        {ingredient.product}{' '}
-                        {ingredient.comment ? `(${ingredient.comment})` : ''}
-                    </DataList.Label>
-                    <DataList.Value>
-                        {ingredient.amount} {ingredient.unit}
-                    </DataList.Value>
-                </DataList.Item>
-            ))}
-        </DataList.Root>
-    )
+  return (
+    <DataList.Root>
+      {ingredients.map((ingredient) => (
+        <DataList.Item key={ingredient.id}>
+          <DataList.Label>
+            {ingredient.product}{' '}
+            {ingredient.comment ? `(${ingredient.comment})` : ''}
+          </DataList.Label>
+          <DataList.Value>
+            {ingredient.amount} {ingredient.unit}
+          </DataList.Value>
+        </DataList.Item>
+      ))}
+    </DataList.Root>
+  );
 }
 
 export default function Ingredients({ recipe }: { recipe: Recipe }) {
@@ -38,7 +39,9 @@ export default function Ingredients({ recipe }: { recipe: Recipe }) {
       ? recipe.variants.findIndex((item) => item.id.toString() === variant)
       : 0;
 
-  const [firstHalf, secondHalf] = splitArray(recipe.variants.at(variantIndex)?.ingredients || []);
+  const [firstHalf, secondHalf] = splitArray(
+    recipe.variants.at(variantIndex)?.ingredients || [],
+  );
 
   return (
     <>
@@ -52,10 +55,14 @@ export default function Ingredients({ recipe }: { recipe: Recipe }) {
           </SegmentedControl.Item>
         ))}
       </SegmentedControl.Root>
-      <Flex justify={'between'} gap={'4'} direction={{
+      <Flex
+        justify={'between'}
+        gap={'4'}
+        direction={{
           initial: 'column',
           sm: 'row',
-      }}>
+        }}
+      >
         <IngredientList ingredients={firstHalf} />
         <IngredientList ingredients={secondHalf} />
       </Flex>

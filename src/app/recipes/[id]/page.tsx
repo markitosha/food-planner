@@ -23,7 +23,9 @@ export default async function Page({
     <Flex gap={'4'} direction={'column'}>
       <Flex justify={'between'} align={'center'}>
         <Box>
-          <Heading><EditableName id={id}>{recipe.name}</EditableName></Heading>
+          <Heading>
+            <EditableName id={id}>{recipe.name}</EditableName>
+          </Heading>
           <Text as={'div'} color={'gray'}>
             <EditableSubtitle id={id}>{recipe.description}</EditableSubtitle>
           </Text>
@@ -41,7 +43,9 @@ export default async function Page({
         <Table.Body>
           {recipe.steps.map((step) => (
             <Table.Row key={step.id}>
-              <Table.Cell><StepEditableIndex step={step} id={id} /></Table.Cell>
+              <Table.Cell>
+                <StepEditableIndex step={step} id={id} />
+              </Table.Cell>
               <Table.Cell>
                 <StepEditableText step={step} id={id} />
               </Table.Cell>
