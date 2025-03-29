@@ -1,13 +1,13 @@
 'use client';
 
 import ItemsList from '@/components/items-list';
-import createNewMealPlan from '@/db/createNewMealPlan';
-import { Meal, MealPlan, Recipe } from '@/db/types';
-import updateMealPlan from '@/db/updateMealPlan';
+import { createNewMealPlan, updateMealPlan } from '@/db/plan';
+import { Family, Meal, MealPlan, Recipe } from '@/db/types';
 import {
   Button,
   Flex,
   ScrollArea,
+  Select,
   Separator,
   TextField,
 } from '@radix-ui/themes';
@@ -18,6 +18,7 @@ type Props = {
   meals?: Meal[];
   id?: string;
   disabled?: boolean;
+  families: Family[];
 };
 
 export default function PlanForm({
@@ -26,6 +27,7 @@ export default function PlanForm({
   meals = [],
   id,
   disabled,
+  families,
 }: Props) {
   return (
     <form
@@ -59,6 +61,22 @@ export default function PlanForm({
           defaultValue={defaultValue?.description}
           disabled={disabled}
         />
+        <Select.Root
+          defaultValue={
+            defaultValue?.family_id.toString() || families.at(0)?.id.toString()
+          }
+          name={'family_id'}
+          disabled={disabled}
+        >
+          <Select.Trigger />
+          <Select.Content>
+            {families.map((family) => (
+              <Select.Item key={family.id} value={family.id.toString()}>
+                {family.name}
+              </Select.Item>
+            ))}
+          </Select.Content>
+        </Select.Root>
         <Separator
           style={{
             width: '100%',

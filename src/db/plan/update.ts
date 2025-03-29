@@ -4,7 +4,7 @@ import getDatabase from '@/db/getDatabase';
 import { Meal } from '@/db/types';
 import { revalidatePath } from 'next/cache';
 
-export default async function updateMealPlan(
+export async function updateMealPlan(
   id: string,
   formData: FormData,
   meals: Meal[],
@@ -12,12 +12,16 @@ export default async function updateMealPlan(
   const name = formData.get('name') as string;
   const description = formData.get('description') as string;
   const recipes = formData.getAll('recipes') as string[];
+  const familyId = formData.get('family_id') as string;
+
+  console.log(familyId);
 
   const sql = await getDatabase();
 
   await sql`UPDATE meal_plans
             SET name        = ${name},
-                description = ${description}
+                description = ${description},
+                family_id   = ${familyId}
             WHERE id = ${id};`;
 
   const old = new Set(meals.map((meal) => meal.recipe_id));

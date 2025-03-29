@@ -27,7 +27,7 @@ async function getAllIngredients(mealPlanId: string) {
                                  JOIN units ON ingredients.unit_id = units.id
                                  LEFT JOIN shopping ON shopping.product_id = products.id AND shopping.meal_plan_id = meals.meal_plan_id
                           WHERE meals.meal_plan_id = ${mealPlanId}
-                          GROUP BY products.id, units.name, shopping.checked
+                          GROUP BY products.id, units.name, shopping.checked, units.id
                           ORDER BY shopping.checked, products.name;`) as IngredientRaw[];
 
   const data = rawData.reduce((acc, ingredient, currentIndex) => {

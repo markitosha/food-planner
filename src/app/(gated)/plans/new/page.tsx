@@ -1,18 +1,25 @@
-import PlanForm from '@/components/PlanForm';
+import PlanForm from '@/components/plan-form';
+import { getAllFamilies } from '@/db/family';
 import { getAllRecipes } from '@/db/recipe';
-import { Container, Flex, Heading, Section } from '@radix-ui/themes';
+import { Flex, Heading, Text } from '@radix-ui/themes';
 
 export default async function Page() {
   const recipes = await getAllRecipes();
+  const families = await getAllFamilies();
+
+  if (!families.length) {
+    return (
+      <Text>
+        Meal plan cannot be created outside of the family. Create family (group
+        of people) first.
+      </Text>
+    );
+  }
 
   return (
-    <Section>
-      <Container size={'2'}>
-        <Flex direction={'column'} gap={'2'}>
-          <Heading align={'center'}>New plan</Heading>
-          <PlanForm recipes={recipes} />
-        </Flex>
-      </Container>
-    </Section>
+    <Flex direction={'column'} gap={'2'}>
+      <Heading align={'center'}>New plan</Heading>
+      <PlanForm recipes={recipes} families={families} />
+    </Flex>
   );
 }

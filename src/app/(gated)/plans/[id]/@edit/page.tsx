@@ -1,4 +1,5 @@
-import PlanForm from '@/components/PlanForm';
+import PlanForm from '@/components/plan-form';
+import { getAllFamilies } from '@/db/family';
 import { getAllRecipes } from '@/db/recipe';
 import getMeals from '@/db/getMeals';
 import getPlan from '@/db/getPlan';
@@ -15,6 +16,7 @@ export default async function Page({
   const recipes = await getAllRecipes();
   const meals = await getMeals(id);
   const shoppingList = await getShoppingList(id);
+  const families = await getAllFamilies();
 
   return (
     <>
@@ -33,6 +35,7 @@ export default async function Page({
             meals={meals}
             id={id}
             disabled={!!shoppingList.length}
+            families={families}
           />
         </Flex>
       </Container>
