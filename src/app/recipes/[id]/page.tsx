@@ -47,6 +47,12 @@ export default async function Page({
               </Table.Cell>
             </Table.Row>
           ))}
+          {/*<Table.Row>*/}
+          {/*  <Table.Cell></Table.Cell>*/}
+          {/*  <Table.Cell>*/}
+          {/*    <Button variant={'soft'} color={'gray'}>Add new...</Button>*/}
+          {/*  </Table.Cell>*/}
+          {/*</Table.Row>*/}
         </Table.Body>
       </Table.Root>
     </Flex>
