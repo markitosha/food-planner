@@ -4,7 +4,7 @@ import { getAllPlans } from '@/db/plan';
 
 export default async function Home() {
   const families = await getAllFamilies();
-  const data = await getAllPlans(families);
+  const data = await getAllPlans();
 
   return (
     <ItemsList
