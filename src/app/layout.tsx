@@ -8,6 +8,7 @@ import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import '@radix-ui/themes/styles.css';
 import { Analytics } from '@vercel/analytics/react';
+import { Toaster } from 'sonner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -42,6 +43,7 @@ export default function RootLayout({
             >
               <Navigation />
               {children}
+              <Toaster richColors />
             </Theme>
             <SpeedInsights />
             <Analytics />

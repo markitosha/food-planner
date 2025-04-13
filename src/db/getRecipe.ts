@@ -1,7 +1,7 @@
 'use server';
 
 import getDatabase from './getDatabase';
-import { Recipe } from './types';
+import { FullRecipe } from './types';
 
 async function getRecipe(id: string) {
   const sql = await getDatabase();
@@ -69,7 +69,7 @@ async function getRecipe(id: string) {
             LEFT JOIN recipe_variants rv ON ri.recipe_id = rv.recipe_id
             LEFT JOIN variant_steps vs ON rv.id = vs.variant_id
             LEFT JOIN variant_ingredients vi ON rv.id = vi.variant_id
-      GROUP BY ri.recipe_id, ri.recipe_name, ri.description, vs.steps;`) as Recipe[];
+      GROUP BY ri.recipe_id, ri.recipe_name, ri.description, vs.steps;`) as FullRecipe[];
 
   return recipe.at(0);
 }

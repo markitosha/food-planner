@@ -1,7 +1,7 @@
 'use client';
 
 import { updateIngredient } from '@/db/ingredient';
-import { Ingredient, Product, Recipe, Unit } from '@/db/types';
+import { Ingredient, Product, FullRecipe, Unit } from '@/db/types';
 import {
   DataList,
   Flex,
@@ -158,7 +158,7 @@ export default function Ingredients({
   units,
   products,
 }: {
-  recipe: Recipe;
+  recipe: FullRecipe;
   units: Unit[];
   products: Product[];
 }) {

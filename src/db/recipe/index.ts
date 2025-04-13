@@ -1,1 +1,1 @@
-export * from './getAllRecipes';
+export * from './getAll';

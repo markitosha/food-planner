@@ -44,7 +44,7 @@ export type Step = {
   instruction: string;
 };
 
-export type Recipe = {
+export type FullRecipe = {
   id: number;
   name: string;
   description: string;
@@ -73,4 +73,18 @@ export type Unit = {
 export type Product = {
   id: number;
   name: string;
+};
+
+export type DbReturn<T> = {
+  data: T;
+  status: 'success' | 'error';
+  error?: string;
+};
+
+export type RecipeSummary = {
+  id: string;
+  name: string;
+  description: string;
+  image_url?: string;
+  variant_count: number;
 };
