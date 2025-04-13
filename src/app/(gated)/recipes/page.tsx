@@ -1,6 +1,6 @@
-import { RecipeHeading, RecipeList } from './components';
 import { Error } from '@/components';
 import { getAllRecipes } from '@/db/recipe';
+import { RecipeHeading, RecipeList } from './components';
 
 export default async function Page() {
   const recipes = await getAllRecipes();

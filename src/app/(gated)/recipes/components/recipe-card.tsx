@@ -12,11 +12,12 @@ export function RecipeCard({ recipe }: { recipe: RecipeSummary }) {
               <Image
                 src={recipe.image_url}
                 alt={'recipe image'}
-                width={'200'}
-                height={'140'}
-                objectFit={'cover'}
+                width={'150'}
+                height={'105'}
                 style={{
                   height: '100%',
+                  width: 'auto',
+                  objectFit: 'cover',
                 }}
               />
             </Inset>
