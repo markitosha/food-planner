@@ -20,7 +20,8 @@ export async function getIngredientsByVariant(
                                                FROM ingredients i
                                                         JOIN products p ON i.product_id = p.id
                                                         JOIN units u ON i.unit_id = u.id
-                                               WHERE i.recipe_variant_id = ${variantId};`) as Ingredient[];
+                                               WHERE i.recipe_variant_id = ${variantId}
+                                               ORDER BY p.name;`) as Ingredient[];
 
     return {
       data,
