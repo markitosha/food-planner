@@ -1,7 +1,7 @@
 'use server';
 
 import getDatabase from '@/db/getDatabase';
-import { Ingredient } from '@/db/types';
+import { ShoppingIngredient } from '@/db/types';
 
 async function getShoppingList(id: string) {
   const sql = await getDatabase();
@@ -14,7 +14,7 @@ async function getShoppingList(id: string) {
     FROM shopping
       JOIN products on shopping.product_id = products.id
     where meal_plan_id=${id} and deleted = false
-    ORDER BY checked, name;`) as Ingredient[];
+    ORDER BY checked, name;`) as ShoppingIngredient[];
 
   return data;
 }

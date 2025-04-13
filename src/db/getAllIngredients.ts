@@ -1,7 +1,7 @@
 'use server';
 
 import getDatabase from '@/db/getDatabase';
-import { Ingredient } from '@/db/types';
+import { ShoppingIngredient } from '@/db/types';
 
 export type IngredientRaw = {
   amount: string;
@@ -50,7 +50,7 @@ async function getAllIngredients(mealPlanId: string) {
     prevItem.amount = `${prevAmount} + ${parseFloat(ingredient.amount)} ${ingredient.unit}`;
 
     return acc;
-  }, [] as Partial<Ingredient>[]);
+  }, [] as Partial<ShoppingIngredient>[]);
 
   return data;
 }

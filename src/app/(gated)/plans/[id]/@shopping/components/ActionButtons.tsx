@@ -1,11 +1,11 @@
 'use client';
 
-import { Ingredient } from '@/db/types';
+import { ShoppingIngredient } from '@/db/types';
 import updateShoppingList from '@/db/updateShoppingList';
 import { CheckIcon, Cross1Icon, TrashIcon } from '@radix-ui/react-icons';
 import { IconButton } from '@radix-ui/themes';
 
-type Props = Ingredient;
+type Props = ShoppingIngredient;
 
 export default function ActionButtons(props: Props) {
   return (

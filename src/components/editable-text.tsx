@@ -3,7 +3,7 @@
 import { TextArea, TextField } from '@radix-ui/themes';
 import { Ref, useEffect, useRef, useState } from 'react';
 
-export default function EditableText({
+export function EditableText({
   children,
   onBlur,
   type = 'textarea',
@@ -14,6 +14,7 @@ export default function EditableText({
 }) {
   const [editing, setEditing] = useState(false);
   const inputRef = useRef<HTMLTextAreaElement | HTMLInputElement>(null);
+  const value = useRef<string | null>(null);
 
   useEffect(() => {
     if (editing) {
@@ -28,6 +29,7 @@ export default function EditableText({
         defaultValue={children.toString()}
         onBlur={(event) => {
           onBlur?.(event.target.value);
+          value.current = event.target.value;
           setEditing(false);
         }}
       />
@@ -41,6 +43,7 @@ export default function EditableText({
         defaultValue={children.toString()}
         onBlur={(event) => {
           onBlur?.(event.target.value);
+          value.current = event.target.value;
           setEditing(false);
         }}
       />
@@ -53,7 +56,7 @@ export default function EditableText({
         setEditing(true);
       }}
     >
-      {children}
+      {value.current || children}
     </span>
   );
 }

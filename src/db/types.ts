@@ -19,35 +19,28 @@ export type MealPlan = {
   description: string;
 };
 
-export type Ingredient = {
-  amount: string;
-  product_id: number;
-  name: string;
+export type ShoppingIngredient = Ingredient & {
   checked: boolean;
-  id: number;
   deleted: boolean;
-  product: string;
-  unit: string;
-  unit_id: number;
-  comment: string;
 };
 
-type Variant = {
+export type Variant = {
   id: number;
-  name: string;
-  ingredients: Ingredient[];
+  variant_name: string;
 };
 
 export type Step = {
   id: number;
   step_index: number;
   instruction: string;
+  image_url?: string;
 };
 
 export type FullRecipe = {
   id: number;
   name: string;
   description: string;
+  image_url?: string;
   variants: Variant[];
   steps: Step[];
 };
@@ -82,9 +75,20 @@ export type DbReturn<T> = {
 };
 
 export type RecipeSummary = {
-  id: string;
+  id: number;
   name: string;
   description: string;
   image_url?: string;
-  variant_count: number;
+  variant_count?: number;
+};
+
+export type Ingredient = {
+  amount: string;
+  product: string;
+  product_id: number;
+  name: string;
+  id: number;
+  unit: string;
+  unit_id: number;
+  comment: string;
 };

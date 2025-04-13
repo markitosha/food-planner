@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
       new URL(
         'https://qzov64wd54av2cp1.public.blob.vercel-storage.com/recipes/**',
       ),
+      new URL(
+        'https://qzov64wd54av2cp1.public.blob.vercel-storage.com/steps/**',
+      ),
     ],
   },
 };
