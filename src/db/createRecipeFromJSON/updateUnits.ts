@@ -1,4 +1,4 @@
-import { HFRecipe } from '@/db/createNewRecipe';
+import { HFRecipe } from '@/db/createRecipeFromJSON/createRecipeFromJSON';
 import getDatabase from '@/db/getDatabase';
 
 export default async function updateUnits(recipe: HFRecipe) {
@@ -6,7 +6,7 @@ export default async function updateUnits(recipe: HFRecipe) {
 
   const units = recipe.yields.reduce((acc, item) => {
     item.ingredients.forEach((i) => {
-      acc.add(i.unit);
+      acc.add(i.unit || 'stk');
     });
 
     return acc;

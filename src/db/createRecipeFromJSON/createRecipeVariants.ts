@@ -1,4 +1,4 @@
-import { HFRecipe } from '@/db/createNewRecipe';
+import { HFRecipe } from '@/db/createRecipeFromJSON/createRecipeFromJSON';
 import getDatabase from '@/db/getDatabase';
 
 export default async function createRecipeVariants(

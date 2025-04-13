@@ -7,7 +7,7 @@ import { Edit } from 'lucide-react';
 import { useState } from 'react';
 
 export function Variants({ recipe }: { recipe: FullRecipe }) {
-  const [current, setCurrent] = useState(recipe.variants[0].id.toString());
+  const [current, setCurrent] = useState(recipe.variants[0]?.id.toString());
 
   return (
     <Card>

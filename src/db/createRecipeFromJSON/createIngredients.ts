@@ -1,5 +1,5 @@
-import { HFRecipe } from '@/db/createNewRecipe';
-import { getName } from '@/db/createNewRecipe/updateProducts';
+import { HFRecipe } from '@/db/createRecipeFromJSON/createRecipeFromJSON';
+import { getName } from '@/db/createRecipeFromJSON/updateProducts';
 import getDatabase from '@/db/getDatabase';
 import { NeonQueryFunction } from '@neondatabase/serverless';
 
@@ -20,7 +20,7 @@ async function createVariantIngredients(
       const { name, comment } = ingredientsNames[ingredient.id];
 
       return sql`INSERT INTO ingredients (recipe_variant_id, product_id, amount, unit_id, comment)
-                    VALUES (${variantId}, (SELECT id FROM products WHERE name = ${name}), ${ingredient.amount}, (SELECT id FROM units WHERE name = ${ingredient.unit}), ${comment});`;
+                    VALUES (${variantId}, (SELECT id FROM products WHERE name = ${name}), ${ingredient.amount}, (SELECT id FROM units WHERE name = ${ingredient.unit || 'stk'}), ${comment});`;
     }),
   );
 }

@@ -1,28 +1,43 @@
 'use client';
 
-import createNewRecipe from '@/db/createNewRecipe';
+import { redirect } from 'next/navigation';
+import { useState } from 'react';
+import { createRecipeFromJSON } from '@/db/createRecipeFromJSON';
 import { Button, Flex, Heading, TextArea } from '@radix-ui/themes';
+import { toast } from 'sonner';
 
 export default function Page() {
+  const [loading, setLoading] = useState(false);
+
   return (
     <form
       onSubmit={async (e) => {
         e.preventDefault();
 
+        setLoading(true);
+
         const formData = new FormData(e.currentTarget);
         const data = Object.fromEntries(formData.entries());
 
-        await createNewRecipe(data as never);
+        const res = await createRecipeFromJSON(data as never);
+
+        if (res.status === 'error') {
+          toast.error(res.error);
+        } else {
+          redirect(`/recipes/${res.data}`);
+        }
+
+        setLoading(false);
       }}
     >
       <Flex direction={'column'} gap={'2'}>
         <Heading align={'center'} mb={'4'}>
           New recipe
         </Heading>
-        {/*<TextField.Root name="name" placeholder={'Name'} required />*/}
-        {/*<TextField.Root name="description" placeholder={'Description'} />*/}
         <TextArea placeholder="Put HF request here" name={'hf_data'} />
-        <Button type={'submit'}>Save</Button>
+        <Button type={'submit'} loading={loading}>
+          Save
+        </Button>
       </Flex>
     </form>
   );
