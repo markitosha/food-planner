@@ -2,7 +2,7 @@
 
 import ItemsList from '@/components/items-list';
 import { createNewMealPlan, updateMealPlan } from '@/db/plan';
-import { Family, Meal, MealPlan, FullRecipe } from '@/db/types';
+import { Family, Meal, MealPlan, RecipeSummary } from '@/db/types';
 import {
   Button,
   Flex,
@@ -13,7 +13,7 @@ import {
 } from '@radix-ui/themes';
 
 type Props = {
-  recipes: FullRecipe[];
+  recipes: RecipeSummary[];
   defaultValue?: MealPlan;
   meals?: Meal[];
   id?: string;

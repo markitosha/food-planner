@@ -1,6 +1,6 @@
 'use client';
 
-import EditableText from '@/components/EditableText';
+import { EditableText } from '@/components';
 import { updateFamilyById } from '@/db/family';
 
 export default function EditableName({

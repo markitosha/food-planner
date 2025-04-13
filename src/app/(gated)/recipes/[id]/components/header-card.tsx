@@ -3,7 +3,7 @@ import { EditableName } from './editable-name';
 import { EditableSubtitle } from './editable-subtitle';
 import { RemoveButton } from './remove-button';
 import { FullRecipe } from '@/db/types';
-import { Box, Card, Flex, Inset } from '@radix-ui/themes';
+import { Card, Flex, Inset } from '@radix-ui/themes';
 
 export function HeaderCard({ recipe }: { recipe: FullRecipe }) {
   return (

@@ -19,7 +19,7 @@ export default async function Page() {
   return (
     <Flex direction={'column'} gap={'2'}>
       <Heading align={'center'}>New plan</Heading>
-      <PlanForm recipes={recipes} families={families} />
+      <PlanForm recipes={recipes.data} families={families} />
     </Flex>
   );
 }

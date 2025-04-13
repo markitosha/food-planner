@@ -30,7 +30,7 @@ export default async function Page({
       <Container size={'2'}>
         <Flex direction={'column'} gap={'2'}>
           <PlanForm
-            recipes={recipes}
+            recipes={recipes.data}
             defaultValue={plan}
             meals={meals}
             id={id}
