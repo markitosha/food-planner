@@ -1,7 +1,9 @@
-import { HeaderCard, Steps, Variants } from './components';
-import { getRecipeById } from '@/db/recipe';
-import { Error } from '@/components';
 import { Flex, Text } from '@radix-ui/themes';
+
+import { Error } from '@/components';
+import { getRecipeById } from '@/db/recipe';
+
+import { HeaderCard, Steps, Variants } from './components';
 
 export default async function Page({
   params,
@@ -20,7 +22,7 @@ export default async function Page({
       <HeaderCard recipe={recipe.data} />
       <Variants recipe={recipe.data} />
       <Steps steps={recipe.data.steps} recipeId={id} />
-      <Error error={recipe.error}></Error>
+      <Error error={recipe.error} />
     </Flex>
   );
 }

@@ -1,10 +1,11 @@
 'use client';
 
-import { deleteRecipe } from '@/db/recipe';
 import { Button } from '@radix-ui/themes';
 import { redirect } from 'next/navigation';
 import { useState } from 'react';
+
 import { Error } from '@/components';
+import { deleteRecipe } from '@/db/recipe';
 
 export function RemoveButton({ id }: { id: number }) {
   const [disabled, setDisabled] = useState(false);

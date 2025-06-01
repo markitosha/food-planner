@@ -1,8 +1,10 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { DbReturn, Step } from '@/db/types';
 import { revalidatePath } from 'next/cache';
+
+import { Step } from '@/db/schema';
+import { DbReturn } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function updateStepIndex(
   step1: Step,
@@ -26,11 +28,11 @@ export async function updateStepIndex(
       data: null,
       status: 'success',
     };
-  } catch (error) {
+  } catch (error: any) {
     return {
       data: null,
       status: 'error',
-      error: `Couldn't update step index: ${error}`,
+      error: `Couldn't update step index: ${error.message}`,
     };
   }
 }

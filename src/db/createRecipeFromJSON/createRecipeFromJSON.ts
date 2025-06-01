@@ -1,13 +1,15 @@
 'use server';
 
+import { revalidatePath } from 'next/cache';
+
+import { DbReturn } from '@/db/types';
+
 import createIngredients from './createIngredients';
 import createRecipe from './createRecipe';
 import createRecipeVariants from './createRecipeVariants';
 import createSteps from './createSteps';
 import updateProducts from './updateProducts';
 import updateUnits from './updateUnits';
-import { DbReturn } from '@/db/types';
-import { revalidatePath } from 'next/cache';
 
 export type HFRecipe = {
   name: string;
@@ -29,8 +31,10 @@ export type HFRecipe = {
 
 export async function createRecipeFromJSON({
   hf_data,
+  family_id = 1,
 }: {
   hf_data: string;
+  family_id: number;
 }): Promise<DbReturn<number | null>> {
   let recipe: HFRecipe;
 
@@ -47,7 +51,7 @@ export async function createRecipeFromJSON({
   }
 
   try {
-    const id = await createRecipe(recipe);
+    const id = await createRecipe(recipe, family_id);
 
     const vData = await createRecipeVariants(recipe, id);
 

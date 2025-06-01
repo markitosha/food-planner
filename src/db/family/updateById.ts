@@ -1,7 +1,8 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
 import { revalidatePath } from 'next/cache';
+
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function updateFamilyById({
   name,

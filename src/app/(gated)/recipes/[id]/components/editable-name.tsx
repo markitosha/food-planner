@@ -1,8 +1,9 @@
 'use client';
 
+import { Heading } from '@radix-ui/themes';
+
 import { EditableText } from '@/components';
 import { updateRecipe } from '@/db/recipe';
-import { Heading } from '@radix-ui/themes';
 
 export function EditableName({
   id,

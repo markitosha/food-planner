@@ -1,8 +1,5 @@
 'use client';
 
-import ItemsList from '@/components/items-list';
-import { createNewMealPlan, updateMealPlan } from '@/db/plan';
-import { Family, Meal, MealPlan, RecipeSummary } from '@/db/types';
 import {
   Button,
   Flex,
@@ -12,16 +9,21 @@ import {
   TextField,
 } from '@radix-ui/themes';
 
+import ItemsList from '@/components/items-list';
+import { MealWithRecipe } from '@/db/meal';
+import { createNewMealPlan, updateMealPlan } from '@/db/plan';
+import { Family, MealPlan, Recipe } from '@/db/schema';
+
 type Props = {
-  recipes: RecipeSummary[];
-  defaultValue?: MealPlan;
-  meals?: Meal[];
+  recipes: Recipe[];
+  defaultValue?: MealPlan | null;
+  meals?: MealWithRecipe[];
   id?: string;
   disabled?: boolean;
   families: Family[];
 };
 
-export default function PlanForm({
+export function PlanForm({
   recipes,
   defaultValue,
   meals = [],
@@ -58,7 +60,7 @@ export default function PlanForm({
         <TextField.Root
           placeholder="Description"
           name={'description'}
-          defaultValue={defaultValue?.description}
+          defaultValue={defaultValue?.description || ''}
           disabled={disabled}
         />
         <Select.Root

@@ -1,7 +1,7 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { Family } from '@/db/types';
+import { Family } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 import { stackServerApp } from '@/stack';
 
 export async function addFamily() {
@@ -9,7 +9,7 @@ export async function addFamily() {
     publicRequest: true,
   });
   const data =
-    await sql`INSERT INTO families (name) VALUES ('Family') RETURNING id;`;
+    await sql`INSERT INTO families (name) VALUES ('Family') RETURNING *;`;
   const family = data.at(0);
 
   if (family) {

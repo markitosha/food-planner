@@ -1,9 +1,10 @@
 'use client';
 
-import { addMemberToFamilyByEmail } from '@/db/family/members';
 import { DoubleArrowLeftIcon, PlusIcon } from '@radix-ui/react-icons';
 import { Button, Flex, TextField, Text } from '@radix-ui/themes';
 import { useState } from 'react';
+
+import { addMemberToFamilyByEmail } from '@/db/family_members';
 
 export default function AddMember({ familyId }: { familyId: string }) {
   const [input, setInput] = useState(false);

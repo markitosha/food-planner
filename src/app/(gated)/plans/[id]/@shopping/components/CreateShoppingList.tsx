@@ -1,8 +1,9 @@
 'use client';
 
-import createShoppingList from '@/db/createShoppingList';
 import { Button, Flex, Text } from '@radix-ui/themes';
 import { useParams } from 'next/navigation';
+
+import { createShoppingList } from '@/db/shopping';
 
 export default function CreateShoppingList() {
   const { id } = useParams<{ id: string }>();

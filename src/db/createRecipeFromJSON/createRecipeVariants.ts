@@ -1,5 +1,7 @@
-import { HFRecipe } from '@/db/createRecipeFromJSON/createRecipeFromJSON';
-import getDatabase from '@/db/getDatabase';
+import { createVariantNames } from '@/db/utils';
+import getDatabase from '@/db/utils/getDatabase';
+
+import { HFRecipe } from './createRecipeFromJSON';
 
 export default async function createRecipeVariants(
   recipe: HFRecipe,
@@ -7,7 +9,7 @@ export default async function createRecipeVariants(
 ) {
   const sql = await getDatabase();
 
-  const variants = recipe.yields.map((variant) => `${variant.yields} People`);
+  const variants = createVariantNames(recipe.yields);
   const vData = await sql.transaction(
     variants.map(
       (variant) =>

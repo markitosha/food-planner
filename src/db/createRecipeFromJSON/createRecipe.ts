@@ -1,15 +1,20 @@
-import { HFRecipe } from '@/db/createRecipeFromJSON/createRecipeFromJSON';
-import getDatabase from '@/db/getDatabase';
 import { put } from '@vercel/blob';
 
-export default async function createRecipe(recipe: HFRecipe) {
+import getDatabase from '@/db/utils/getDatabase';
+
+import { HFRecipe } from './createRecipeFromJSON';
+
+export default async function createRecipe(
+  recipe: HFRecipe,
+  family_id: number = 1,
+) {
   const sql = await getDatabase();
 
   const name = recipe.name;
   const description = recipe.headline;
 
   const data =
-    await sql`INSERT INTO recipes (name, description, hf_json, family_id) VALUES (${name}, ${description}, ${recipe}, 1) RETURNING id;`;
+    await sql`INSERT INTO recipes (name, description, hf_json, family_id) VALUES (${name}, ${description}, ${recipe}, ${family_id}) RETURNING id;`;
 
   const id = data.at(0)?.id;
 

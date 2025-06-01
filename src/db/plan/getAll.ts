@@ -1,7 +1,7 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { MealPlan } from '@/db/types';
+import { MealPlan } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function getAllPlans() {
   const sql = await getDatabase();

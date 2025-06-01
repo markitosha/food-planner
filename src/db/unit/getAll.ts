@@ -1,7 +1,7 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { Unit } from '@/db/types';
+import { Unit } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function getAllUnits() {
   const sql = await getDatabase();

@@ -17,7 +17,7 @@ type Props = {
   data: {
     id: number;
     name: string;
-    description?: string;
+    description?: string | null;
     href?: string;
   }[];
   title?: string;

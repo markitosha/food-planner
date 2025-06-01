@@ -1,10 +1,12 @@
-import AddMember from '@/app/(gated)/families/[id]/components/add-member';
-import DeleteButton from '@/app/(gated)/families/[id]/components/delete-button';
-import RemoveButton from '@/app/(gated)/families/[id]/components/remove-button';
-import { getAllFamilyParticipants } from '@/db/family/members';
-import EditableName from './components/editable-name';
-import { getFamilyById } from '@/db/family';
 import { Flex, Heading, Table } from '@radix-ui/themes';
+
+import { getFamilyById } from '@/db/family';
+import { getAllFamilyMembers } from '@/db/family_members';
+
+import AddMember from './components/add-member';
+import DeleteButton from './components/delete-button';
+import EditableName from './components/editable-name';
+import RemoveButton from './components/remove-button';
 
 export default async function Page({
   params,
@@ -13,7 +15,7 @@ export default async function Page({
 }) {
   const { id } = await params;
   const family = await getFamilyById(id);
-  const members = await getAllFamilyParticipants(id);
+  const members = await getAllFamilyMembers(id);
 
   if (!family) {
     return <div>Family not found</div>;

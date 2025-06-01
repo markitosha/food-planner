@@ -29,6 +29,25 @@ const eslintConfig = [
       'jsx-a11y/click-events-have-key-events': 'warn',
       'jsx-a11y/no-static-element-interactions': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
+      'import/order': [
+        'error',
+        {
+          'groups': ['external', 'internal', 'parent', 'sibling', 'index'],
+          'pathGroups': [
+            {
+              'pattern': '@/**',
+              'group': 'internal',
+              'position': 'after'
+            }
+          ],
+          'pathGroupsExcludedImportTypes': ['external'],
+          'newlines-between': 'always',
+          'alphabetize': {
+            'order': 'asc',
+            'caseInsensitive': true
+          }
+        }
+      ]
     },
   }),
 ];

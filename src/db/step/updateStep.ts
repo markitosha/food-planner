@@ -1,8 +1,9 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { Step } from '@/db/types';
 import { revalidatePath } from 'next/cache';
+
+import { Step } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function updateStep(step: Step, value: string, recipeId: string) {
   const sql = await getDatabase();

@@ -1,14 +1,19 @@
 'use client';
 
-import { getIngredientsByVariant } from '@/db/ingredient';
-import { Ingredient } from '@/db/types';
 import { Box, DataList, Flex, Spinner } from '@radix-ui/themes';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
+import {
+  getIngredientsByVariant,
+  IngredientWithProductAndUnit,
+} from '@/db/ingredient';
+
 export function Ingredients({ variant }: { variant: string }) {
   const [loading, setLoading] = useState(true);
-  const [ingredients, setIngredients] = useState<Ingredient[]>([]);
+  const [ingredients, setIngredients] = useState<
+    IngredientWithProductAndUnit[]
+  >([]);
 
   useEffect(() => {
     setLoading(true);

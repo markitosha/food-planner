@@ -1,7 +1,7 @@
 'use client';
 
 import { EditableText } from '@/components';
-import { Step } from '@/db/types';
+import { Step } from '@/db/schema';
 import { updateStep } from '@/db/step';
 
 export function StepEditableText({ step, id }: { step: Step; id: string }) {

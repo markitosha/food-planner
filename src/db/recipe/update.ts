@@ -1,8 +1,9 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { DbReturn } from '@/db/types';
 import { revalidatePath } from 'next/cache';
+
+import { DbReturn } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function updateRecipe({
   name,
@@ -36,11 +37,11 @@ export async function updateRecipe({
       data: null,
       status: 'success',
     };
-  } catch (error) {
+  } catch (error: any) {
     return {
       data: null,
       status: 'error',
-      error: `Couldn't update recipe: ${error}`,
+      error: `Couldn't update recipe: ${error.message}`,
     };
   }
 }

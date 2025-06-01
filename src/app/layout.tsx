@@ -1,14 +1,16 @@
-import Navigation from '@/components/navigation';
-import { stackServerApp } from '@/stack';
 import { Theme } from '@radix-ui/themes';
 import { StackProvider, StackTheme } from '@stackframe/stack';
+import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import './globals.css';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import '@radix-ui/themes/styles.css';
-import { Analytics } from '@vercel/analytics/react';
 import { Toaster } from 'sonner';
+
+import Navigation from '@/components/navigation';
+import { stackServerApp } from '@/stack';
+
+import './globals.css';
+import '@radix-ui/themes/styles.css';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',

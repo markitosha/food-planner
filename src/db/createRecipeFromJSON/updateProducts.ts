@@ -1,11 +1,7 @@
-import { HFRecipe } from '@/db/createRecipeFromJSON/createRecipeFromJSON';
-import getDatabase from '@/db/getDatabase';
+import { getName } from '@/db/utils';
+import getDatabase from '@/db/utils/getDatabase';
 
-export const getName = (name: string) => {
-  const splittedName = name.replace('*', '').split(/ til | \(/);
-
-  return splittedName.at(0) || name;
-};
+import { HFRecipe } from './createRecipeFromJSON';
 
 export default async function updateProducts(recipe: HFRecipe) {
   const sql = await getDatabase();

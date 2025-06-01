@@ -1,20 +1,23 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { Meal } from '@/db/types';
 import { revalidatePath } from 'next/cache';
+
+import { Meal } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
+
+export type MealWithRecipeId = Meal & {
+  recipe_id: string;
+};
 
 export async function updateMealPlan(
   id: string,
   formData: FormData,
-  meals: Meal[],
+  meals: MealWithRecipeId[],
 ) {
   const name = formData.get('name') as string;
   const description = formData.get('description') as string;
   const recipes = formData.getAll('recipes') as string[];
   const familyId = formData.get('family_id') as string;
-
-  console.log(familyId);
 
   const sql = await getDatabase();
 

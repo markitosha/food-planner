@@ -1,7 +1,9 @@
-import { HFRecipe } from '@/db/createRecipeFromJSON/createRecipeFromJSON';
-import { getName } from '@/db/createRecipeFromJSON/updateProducts';
-import getDatabase from '@/db/getDatabase';
 import { NeonQueryFunction } from '@neondatabase/serverless';
+
+import { mapIngredientNames } from '@/db/utils';
+import getDatabase from '@/db/utils/getDatabase';
+
+import { HFRecipe } from './createRecipeFromJSON';
 
 async function createVariantIngredients(
   ingredients: { id: string; unit: string; amount: number }[],
@@ -31,25 +33,7 @@ export default async function createIngredients(
 ) {
   const sql = await getDatabase();
 
-  const ingredientsNames = recipe.ingredients.reduce(
-    (acc, item) => {
-      const shortenName = getName(item.name);
-
-      acc[item.id] = {
-        name: shortenName,
-        comment: shortenName === item.name ? undefined : item.name,
-      };
-
-      return acc;
-    },
-    {} as Record<
-      string,
-      {
-        name: string;
-        comment?: string;
-      }
-    >,
-  );
+  const ingredientsNames = mapIngredientNames(recipe.ingredients);
 
   return recipe.yields.forEach(({ ingredients }, index) => {
     return createVariantIngredients(

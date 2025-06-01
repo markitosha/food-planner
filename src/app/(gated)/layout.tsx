@@ -1,5 +1,6 @@
-import { stackServerApp } from '@/stack';
 import React from 'react';
+
+import { stackServerApp } from '@/stack';
 
 export default async function Layout({
   children,
