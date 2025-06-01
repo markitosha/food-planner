@@ -4,11 +4,13 @@ import getDatabase from '@/db/utils/getDatabase';
 import { DbReturn } from '@/db/types';
 import { Recipe } from '@/db/schema';
 
-type RecipeWithVariantCount = Recipe & {
+export type RecipeWithVariantCount = Recipe & {
   variant_count: string;
 };
 
-export async function getAllRecipes(): Promise<DbReturn<RecipeWithVariantCount[]>> {
+export async function getAllRecipes(): Promise<
+  DbReturn<RecipeWithVariantCount[]>
+> {
   try {
     const sql = await getDatabase();
     const data = (await sql`SELECT

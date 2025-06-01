@@ -24,4 +24,4 @@ describe('getName', () => {
   it('should handle names with multiple separators', () => {
     expect(getName('Salt til kartofler (med smør)')).toBe('Salt');
   });
-}); 
+});

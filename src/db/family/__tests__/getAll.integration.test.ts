@@ -25,14 +25,14 @@ describe('getAllFamilies', () => {
     `;
 
     const families = await getAllFamilies();
-    
+
     expect(families).toHaveLength(3);
     expect(families).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ name: 'Smith Family' }),
         expect.objectContaining({ name: 'Johnson Family' }),
-        expect.objectContaining({ name: 'Williams Family' })
-      ])
+        expect.objectContaining({ name: 'Williams Family' }),
+      ]),
     );
   });
 
@@ -43,10 +43,10 @@ describe('getAllFamilies', () => {
     `;
 
     const families = await getAllFamilies();
-    
+
     expect(families[0]).toEqual({
       id: expect.any(Number),
-      name: 'Smith Family'
+      name: 'Smith Family',
     });
   });
 
@@ -60,14 +60,14 @@ describe('getAllFamilies', () => {
     `;
 
     const families = await getAllFamilies();
-    
+
     expect(families).toHaveLength(3);
     expect(families).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ name: `O'Connor Family` }),
         expect.objectContaining({ name: `D'Angelo Family` }),
-        expect.objectContaining({ name: 'Müller Family' })
-      ])
+        expect.objectContaining({ name: 'Müller Family' }),
+      ]),
     );
   });
-}); 
+});

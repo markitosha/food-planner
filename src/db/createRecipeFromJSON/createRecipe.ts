@@ -2,7 +2,10 @@ import { HFRecipe } from './createRecipeFromJSON';
 import getDatabase from '@/db/utils/getDatabase';
 import { put } from '@vercel/blob';
 
-export default async function createRecipe(recipe: HFRecipe, family_id: number = 1) {
+export default async function createRecipe(
+  recipe: HFRecipe,
+  family_id: number = 1,
+) {
   const sql = await getDatabase();
 
   const name = recipe.name;

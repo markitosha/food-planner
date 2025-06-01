@@ -32,7 +32,7 @@ describe('updateRecipe', () => {
 
     const result = await updateRecipe({
       recipeId: recipe[0].id,
-      name: 'New Name'
+      name: 'New Name',
     });
 
     expect(result.status).toBe('success');
@@ -58,7 +58,7 @@ describe('updateRecipe', () => {
 
     const result = await updateRecipe({
       recipeId: recipe[0].id,
-      description: 'New Description'
+      description: 'New Description',
     });
 
     expect(result.status).toBe('success');
@@ -85,7 +85,7 @@ describe('updateRecipe', () => {
     const result = await updateRecipe({
       recipeId: recipe[0].id,
       name: 'New Name',
-      description: 'New Description'
+      description: 'New Description',
     });
 
     expect(result.status).toBe('success');
@@ -103,17 +103,19 @@ describe('updateRecipe', () => {
 
   it('should handle database errors gracefully', async () => {
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
     const result = await updateRecipe({
       recipeId: 1,
-      name: 'New Name'
+      name: 'New Name',
     });
 
     expect(result).toEqual({
       data: null,
       status: 'error',
-      error: 'Couldn\'t update recipe: Database error'
+      error: "Couldn't update recipe: Database error",
     });
   });
-}); 
+});

@@ -95,7 +95,7 @@ describe('createShoppingList Integration Test', () => {
       name: 'Test Product',
       amount: '100 g',
       checked: false,
-      deleted: false
+      deleted: false,
     });
   });
 
@@ -146,11 +146,11 @@ describe('createShoppingList Integration Test', () => {
     expect(shoppingList).toHaveLength(2);
     expect(shoppingList[0]).toMatchObject({
       name: 'Test Product',
-      amount: '100 g'
+      amount: '100 g',
     });
     expect(shoppingList[1]).toMatchObject({
       name: 'Test Product 2',
-      amount: '150 g'
+      amount: '150 g',
     });
   });
 
@@ -164,4 +164,4 @@ describe('createShoppingList Integration Test', () => {
 
     await expect(createShoppingList(mealPlanId.toString())).rejects.toThrow();
   });
-}); 
+});

@@ -28,7 +28,7 @@ describe('getRecipeById', () => {
         variants: [],
         steps: [],
       },
-      status: 'success'
+      status: 'success',
     });
   });
 
@@ -64,25 +64,47 @@ describe('getRecipeById', () => {
       description: 'Test Description',
       image_url: null,
       steps: [
-        { id: expect.any(Number), recipe_id: recipe[0].id, step_index: 1, instruction: 'Step 1', image_url: null },
-        { id: expect.any(Number), recipe_id: recipe[0].id, step_index: 2, instruction: 'Step 2', image_url: null }
+        {
+          id: expect.any(Number),
+          recipe_id: recipe[0].id,
+          step_index: 1,
+          instruction: 'Step 1',
+          image_url: null,
+        },
+        {
+          id: expect.any(Number),
+          recipe_id: recipe[0].id,
+          step_index: 2,
+          instruction: 'Step 2',
+          image_url: null,
+        },
       ],
       variants: [
-        { id: expect.any(Number), recipe_id: recipe[0].id, variant_name: 'Variant 1' },
-        { id: expect.any(Number), recipe_id: recipe[0].id, variant_name: 'Variant 2' }
-      ]
+        {
+          id: expect.any(Number),
+          recipe_id: recipe[0].id,
+          variant_name: 'Variant 1',
+        },
+        {
+          id: expect.any(Number),
+          recipe_id: recipe[0].id,
+          variant_name: 'Variant 2',
+        },
+      ],
     });
   });
 
   it('should handle database errors gracefully', async () => {
     // Mock database error by using invalid table name
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
     const result = await getRecipeById('1');
     expect(result).toEqual({
       data: null,
       status: 'error',
-      error: 'Couldn\'t load recipe: Database error'
+      error: "Couldn't load recipe: Database error",
     });
   });
-}); 
+});

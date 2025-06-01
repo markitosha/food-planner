@@ -52,7 +52,7 @@ describe('getShoppingList Integration Test', () => {
       name: 'Test Product',
       amount: '100 g',
       checked: false,
-      deleted: false
+      deleted: false,
     });
   });
 
@@ -102,4 +102,4 @@ describe('getShoppingList Integration Test', () => {
 
     await expect(getShoppingList(mealPlanId.toString())).rejects.toThrow();
   });
-}); 
+});

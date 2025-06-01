@@ -25,7 +25,7 @@ describe('createRecipeFromJSON Integration Test', () => {
   it('should create a recipe with all its components', async () => {
     const result = await createRecipeFromJSON({
       hf_data: JSON.stringify(realRecipeData),
-      family_id: familyId
+      family_id: familyId,
     });
 
     expect(result.status).toBe('success');
@@ -45,7 +45,7 @@ describe('createRecipeFromJSON Integration Test', () => {
     expect(put).toHaveBeenCalledWith(
       `recipes/${result.data}.jpeg`,
       expect.any(Blob),
-      { access: 'public' }
+      { access: 'public' },
     );
 
     // Check variants
@@ -107,7 +107,7 @@ describe('createRecipeFromJSON Integration Test', () => {
     expect(ingredients[0]).toMatchObject({
       product_name: 'Agurk',
       unit_name: 'stk',
-      amount: '1.00'
+      amount: '1.00',
     });
 
     // Check steps
@@ -118,16 +118,20 @@ describe('createRecipeFromJSON Integration Test', () => {
       ORDER BY step_index
     `;
     expect(steps).toHaveLength(6);
-    expect(steps[0].instruction).toBe('Bring en stor gryde med saltet vand i kog. Hak prosciutto, tomat og persille groft. Pres eller hak hvidløg fint. Skræl agurk til lange, tynde bånd. Skyl rucola under koldt vand i et dørslag. TIP: Vandet skal være salt som havvand.');
+    expect(steps[0].instruction).toBe(
+      'Bring en stor gryde med saltet vand i kog. Hak prosciutto, tomat og persille groft. Pres eller hak hvidløg fint. Skræl agurk til lange, tynde bånd. Skyl rucola under koldt vand i et dørslag. TIP: Vandet skal være salt som havvand.',
+    );
     expect(steps[0].image_url).toBe('https://example.com/mocked-image.jpg');
-    expect(steps[1].instruction).toBe('Tilsæt pasta til gryden med kogende vand, og kog i 8-9 min, eller indtil ‘al dente\'. Gem en smule pastavand [1 dl | 2 dl], og hæld resten fra. Vend eventuelt pasta med en smule olivenolie i gryden. TIP: ‘Al dente’ betyder, at pastaen er kogt, men stadig har en mule bid.');
+    expect(steps[1].instruction).toBe(
+      "Tilsæt pasta til gryden med kogende vand, og kog i 8-9 min, eller indtil ‘al dente'. Gem en smule pastavand [1 dl | 2 dl], og hæld resten fra. Vend eventuelt pasta med en smule olivenolie i gryden. TIP: ‘Al dente’ betyder, at pastaen er kogt, men stadig har en mule bid.",
+    );
     expect(steps[1].image_url).toBe('https://example.com/mocked-image.jpg');
   });
 
   it('should handle invalid JSON data', async () => {
     const result = await createRecipeFromJSON({
       hf_data: 'invalid json',
-      family_id: familyId
+      family_id: familyId,
     });
 
     expect(result.status).toBe('error');
@@ -136,15 +140,17 @@ describe('createRecipeFromJSON Integration Test', () => {
   });
 
   it('should handle database errors gracefully', async () => {
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
     const result = await createRecipeFromJSON({
       hf_data: JSON.stringify(realRecipeData),
-      family_id: familyId
+      family_id: familyId,
     });
 
     expect(result.status).toBe('error');
     expect(result.error).toContain("Can't create recipe");
     expect(result.data).toBeNull();
   });
-}); 
+});

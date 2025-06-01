@@ -1,12 +1,12 @@
 'use client';
 
-import { RecipeSummary } from '@/db/types';
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons';
 import { Flex, TextField } from '@radix-ui/themes';
 import { useMemo, useState } from 'react';
 import { RecipeCard } from './recipe-card';
+import type { RecipeWithVariantCount } from '@/db/recipe';
 
-export function RecipeList({ recipes }: { recipes: RecipeSummary[] }) {
+export function RecipeList({ recipes }: { recipes: RecipeWithVariantCount[] }) {
   const [search, setSearch] = useState('');
 
   const filteredRecipes = useMemo(

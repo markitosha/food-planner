@@ -1,6 +1,6 @@
 'use client';
 
-import createShoppingList from '@/db/createShoppingList';
+import { createShoppingList } from '@/db/shopping';
 import { Button, Flex, Text } from '@radix-ui/themes';
 import { useParams } from 'next/navigation';
 

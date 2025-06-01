@@ -1,7 +1,16 @@
 'use server';
 
 import getDatabase from '@/db/utils/getDatabase';
-import { IngredientRaw, ShoppingIngredient } from '@/db/types';
+
+type ShoppingIngredient = {
+  product_id: string;
+  name: string;
+  amount: string;
+  checked: boolean;
+  deleted: boolean;
+  unit: string;
+  unit_id: string;
+};
 
 export async function getAllIngredients(mealPlanId: string) {
   const sql = await getDatabase();
@@ -11,7 +20,8 @@ export async function getAllIngredients(mealPlanId: string) {
                             SUM(ingredients.amount) AS amount,
                             units.name AS unit,
                             units.id AS unit_id,
-                            COALESCE(shopping.checked, FALSE) AS checked
+                            COALESCE(shopping.checked, FALSE) AS checked,
+                            COALESCE(shopping.deleted, FALSE) AS deleted
                           FROM meals
                                  JOIN recipe_variants ON meals.recipe_variant_id = recipe_variants.id
                                  JOIN ingredients ON recipe_variants.id = ingredients.recipe_variant_id
@@ -20,7 +30,7 @@ export async function getAllIngredients(mealPlanId: string) {
                                  LEFT JOIN shopping ON shopping.product_id = products.id AND shopping.meal_plan_id = meals.meal_plan_id
                           WHERE meals.meal_plan_id = ${mealPlanId}
                           GROUP BY products.id, units.name, shopping.checked, units.id
-                          ORDER BY shopping.checked, products.name;`) as IngredientRaw[];
+                          ORDER BY shopping.checked, products.name;`) as ShoppingIngredient[];
 
   const data = rawData.reduce((acc, ingredient, currentIndex) => {
     const prevItem = acc.at(-1);
@@ -31,7 +41,7 @@ export async function getAllIngredients(mealPlanId: string) {
         name: ingredient.name,
         amount: `${parseFloat(ingredient.amount)} ${ingredient.unit}`,
         checked: ingredient.checked,
-        deleted: false,
+        deleted: ingredient.deleted,
       });
 
       return acc;
@@ -45,4 +55,4 @@ export async function getAllIngredients(mealPlanId: string) {
   }, [] as Partial<ShoppingIngredient>[]);
 
   return data;
-} 
+}

@@ -87,7 +87,7 @@ describe('getIngredientsByVariant', () => {
           product_id: productId1,
           product: 'Test Product 1',
           unit_id: unitId,
-          unit: 'Test Unit'
+          unit: 'Test Unit',
         }),
         expect.objectContaining({
           id: expect.any(Number),
@@ -96,9 +96,9 @@ describe('getIngredientsByVariant', () => {
           product_id: productId2,
           product: 'Test Product 2',
           unit_id: unitId,
-          unit: 'Test Unit'
-        })
-      ])
+          unit: 'Test Unit',
+        }),
+      ]),
     );
   });
 
@@ -111,12 +111,16 @@ describe('getIngredientsByVariant', () => {
 
   it('should handle database errors gracefully', async () => {
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
     const result = await getIngredientsByVariant(variantId.toString());
 
     expect(result.status).toBe('error');
     expect(result.data).toEqual([]);
-    expect(result.error).toBe('Couldn\'t get ingredients by variant: Error: Database error');
+    expect(result.error).toBe(
+      "Couldn't get ingredients by variant: Error: Database error",
+    );
   });
-}); 
+});

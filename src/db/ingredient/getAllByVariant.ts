@@ -4,7 +4,7 @@ import getDatabase from '@/db/utils/getDatabase';
 import { DbReturn } from '@/db/types';
 import { Ingredient } from '@/db/schema';
 
-type IngredientWithProductAndUnit = Ingredient & {
+export type IngredientWithProductAndUnit = Ingredient & {
   product: string;
   unit: string;
 };

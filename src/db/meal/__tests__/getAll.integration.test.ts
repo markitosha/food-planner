@@ -63,7 +63,7 @@ describe('getMeals Integration Test', () => {
       variant: '2 People',
       recipe_id: recipeId,
       name: 'Test Recipe',
-      description: 'Test Description'
+      description: 'Test Description',
     });
   });
 
@@ -102,13 +102,13 @@ describe('getMeals Integration Test', () => {
       expect.arrayContaining([
         expect.objectContaining({
           name: 'Test Recipe',
-          variant: '2 People'
+          variant: '2 People',
         }),
         expect.objectContaining({
           name: 'Test Recipe 2',
-          variant: '4 People'
-        })
-      ])
+          variant: '4 People',
+        }),
+      ]),
     );
   });
 
@@ -118,4 +118,4 @@ describe('getMeals Integration Test', () => {
 
     await expect(getMeals(mealPlanId.toString())).rejects.toThrow();
   });
-}); 
+});

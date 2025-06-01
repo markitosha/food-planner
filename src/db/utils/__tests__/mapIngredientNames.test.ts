@@ -19,11 +19,9 @@ describe('mapIngredientNames', () => {
   });
 
   it('should handle names that do not need shortening', () => {
-    const ingredients = [
-      { id: '1', name: 'Salt' },
-    ];
+    const ingredients = [{ id: '1', name: 'Salt' }];
     expect(mapIngredientNames(ingredients)).toEqual({
       '1': { name: 'Salt' },
     });
   });
-}); 
+});

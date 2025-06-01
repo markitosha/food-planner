@@ -1,15 +1,15 @@
 'use server';
 
 import getDatabase from '@/db/utils/getDatabase';
-import { ShoppingIngredient } from '@/db/types';
 import { revalidatePath } from 'next/cache';
 import { DbReturn } from '@/db/types';
+import { Shopping } from '@/db/schema';
 
 export async function updateShoppingList({
   checked,
   deleted = false,
   id,
-}: ShoppingIngredient): Promise<DbReturn<null>> {
+}: Pick<Shopping, 'checked' | 'deleted' | 'id'>): Promise<DbReturn<null>> {
   try {
     const sql = await getDatabase();
 
@@ -19,13 +19,13 @@ export async function updateShoppingList({
 
     return {
       data: null,
-      status: 'success'
+      status: 'success',
     };
   } catch (error: any) {
     return {
       data: null,
       status: 'error',
-      error: `Couldn't update shopping list: ${error}`
+      error: `Couldn't update shopping list: ${error}`,
     };
   }
-} 
+}

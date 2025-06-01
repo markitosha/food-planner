@@ -1,6 +1,6 @@
 'use client';
 
-import { removeMemberById } from '@/db/family/members/remove';
+import { removeMemberById } from '@/db/family_members';
 import { Cross1Icon } from '@radix-ui/react-icons';
 import { IconButton } from '@radix-ui/themes';
 
@@ -9,7 +9,7 @@ export default function RemoveButton({
   memberId,
 }: {
   familyId: string;
-  memberId: number;
+  memberId: string;
 }) {
   return (
     <IconButton

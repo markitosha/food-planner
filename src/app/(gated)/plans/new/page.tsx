@@ -1,4 +1,4 @@
-import PlanForm from '@/components/plan-form';
+import { PlanForm } from '@/components/plan-form';
 import { getAllFamilies } from '@/db/family';
 import { getAllRecipes } from '@/db/recipe';
 import { Flex, Heading, Text } from '@radix-ui/themes';

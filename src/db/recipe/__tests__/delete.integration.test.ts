@@ -39,7 +39,7 @@ describe('deleteRecipe', () => {
       hf_json: null,
       name: 'Test Recipe',
       description: 'Test Description',
-      image_url: null
+      image_url: null,
     });
     expect(revalidatePath).toHaveBeenCalledWith('/recipes');
 
@@ -54,20 +54,22 @@ describe('deleteRecipe', () => {
     const result = await deleteRecipe(999);
     expect(result).toEqual({
       data: null,
-      status: 'success'
+      status: 'success',
     });
     expect(revalidatePath).toHaveBeenCalledWith('/recipes');
   });
 
   it('should handle database errors gracefully', async () => {
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
     const result = await deleteRecipe(1);
     expect(result).toEqual({
       data: null,
       status: 'error',
-      error: 'Couldn\'t delete recipe: Database error'
+      error: "Couldn't delete recipe: Database error",
     });
   });
-}); 
+});

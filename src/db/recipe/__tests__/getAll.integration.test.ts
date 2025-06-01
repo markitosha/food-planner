@@ -25,7 +25,7 @@ describe('getAllRecipes', () => {
     const result = await getAllRecipes();
     expect(result).toEqual({
       data: [],
-      status: 'success'
+      status: 'success',
     });
   });
 
@@ -51,19 +51,21 @@ describe('getAllRecipes', () => {
       name: 'Test Recipe',
       description: 'Test Description',
       image_url: null,
-      variant_count: '1'
+      variant_count: '1',
     });
   });
 
   it('should handle database errors gracefully', async () => {
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
     const result = await getAllRecipes();
     expect(result).toEqual({
       data: [],
       status: 'error',
-      error: 'Couldn\'t load recipes: Database error'
+      error: "Couldn't load recipes: Database error",
     });
   });
-}); 
+});

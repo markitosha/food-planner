@@ -79,12 +79,13 @@ describe('createNewMealPlan', () => {
     formData.append('recipes', recipeId.toString());
 
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
-    await expect(createNewMealPlan(formData))
-      .rejects.toThrow('Database error');
+    await expect(createNewMealPlan(formData)).rejects.toThrow('Database error');
 
     // Verify redirect was not called on error
     expect(redirect).not.toHaveBeenCalled();
   });
-}); 
+});

@@ -49,8 +49,8 @@ describe('removeMemberById', () => {
 
     // Try to remove non-existent member
     await expect(
-      removeMemberById('999', family[0].id.toString())
+      removeMemberById('999', family[0].id.toString()),
     ).resolves.not.toThrow();
     expect(revalidatePath).toHaveBeenCalledWith('/families');
   });
-}); 
+});

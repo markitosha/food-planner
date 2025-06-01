@@ -75,7 +75,7 @@ describe('updateIngredient', () => {
       unit_id: unitId,
       product_id: productId,
       recipe_variant_id: variantId,
-      comment: 'Test comment'
+      comment: 'Test comment',
     };
 
     await updateIngredient(ingredient);
@@ -101,13 +101,16 @@ describe('updateIngredient', () => {
       unit_id: unitId,
       product_id: productId,
       recipe_variant_id: variantId,
-      comment: 'Test comment'
+      comment: 'Test comment',
     };
 
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
-    await expect(updateIngredient(ingredient))
-      .rejects.toThrow('Database error');
+    await expect(updateIngredient(ingredient)).rejects.toThrow(
+      'Database error',
+    );
   });
-}); 
+});

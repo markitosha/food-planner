@@ -9,7 +9,7 @@ export function EditableSubtitle({
   children,
 }: {
   id: number;
-  children: string;
+  children: React.ReactNode;
 }) {
   return (
     <Text as={'div'} color={'gray'}>

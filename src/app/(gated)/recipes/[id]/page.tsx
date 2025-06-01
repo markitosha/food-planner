@@ -20,7 +20,7 @@ export default async function Page({
       <HeaderCard recipe={recipe.data} />
       <Variants recipe={recipe.data} />
       <Steps steps={recipe.data.steps} recipeId={id} />
-      <Error error={recipe.error}></Error>
+      <Error error={recipe.error} />
     </Flex>
   );
 }

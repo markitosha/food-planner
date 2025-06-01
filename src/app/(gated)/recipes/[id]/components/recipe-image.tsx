@@ -1,4 +1,4 @@
-import { FullRecipe } from '@/db/types';
+import { FullRecipe } from '@/db/recipe';
 import Image from 'next/image';
 
 export function RecipeImage({ recipe }: { recipe: FullRecipe }) {

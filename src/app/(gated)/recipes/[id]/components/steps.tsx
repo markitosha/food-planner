@@ -1,7 +1,7 @@
 'use client';
 
 import { StepEditableText } from './step-editable-text';
-import { Step } from '@/db/types';
+import { Step } from '@/db/schema';
 import { updateStepIndex } from '@/db/step';
 import { Flex, IconButton, Table } from '@radix-ui/themes';
 import { ArrowDown, ArrowUp } from 'lucide-react';

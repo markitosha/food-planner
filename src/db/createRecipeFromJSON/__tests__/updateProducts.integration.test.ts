@@ -15,9 +15,9 @@ describe('updateProducts', () => {
     yields: [],
     ingredients: [
       { id: 'ing1', name: 'Test Ingredient 1' },
-      { id: 'ing2', name: 'Test Ingredient 2' }
+      { id: 'ing2', name: 'Test Ingredient 2' },
     ],
-    steps: []
+    steps: [],
   };
 
   beforeEach(async () => {
@@ -58,9 +58,10 @@ describe('updateProducts', () => {
 
   it('should handle database errors gracefully', async () => {
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
-    await expect(updateProducts(mockRecipe))
-      .rejects.toThrow('Database error');
+    await expect(updateProducts(mockRecipe)).rejects.toThrow('Database error');
   });
-}); 
+});

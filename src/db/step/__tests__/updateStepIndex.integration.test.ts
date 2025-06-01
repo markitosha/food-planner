@@ -51,7 +51,7 @@ describe('updateStepIndex', () => {
       step_index: 1,
       instruction: 'Step 1',
       image_url: null,
-      recipe_id: recipeId
+      recipe_id: recipeId,
     };
 
     const step2: Step = {
@@ -59,7 +59,7 @@ describe('updateStepIndex', () => {
       step_index: 2,
       instruction: 'Step 2',
       image_url: null,
-      recipe_id: recipeId
+      recipe_id: recipeId,
     };
 
     const result = await updateStepIndex(step1, step2, recipeId.toString());
@@ -84,7 +84,7 @@ describe('updateStepIndex', () => {
       step_index: 1,
       instruction: 'Step 1',
       image_url: null,
-      recipe_id: recipeId
+      recipe_id: recipeId,
     };
 
     const step2: Step = {
@@ -92,17 +92,19 @@ describe('updateStepIndex', () => {
       step_index: 2,
       instruction: 'Step 2',
       image_url: null,
-      recipe_id: recipeId
+      recipe_id: recipeId,
     };
 
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
     const result = await updateStepIndex(step1, step2, recipeId.toString());
     expect(result).toEqual({
       data: null,
       status: 'error',
-      error: 'Couldn\'t update step index: Database error'
+      error: "Couldn't update step index: Database error",
     });
   });
-}); 
+});

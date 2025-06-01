@@ -26,15 +26,15 @@ describe('getAllUnits', () => {
     `;
 
     const units = await getAllUnits();
-    
+
     expect(units).toHaveLength(4);
     expect(units).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ name: 'gram' }),
         expect.objectContaining({ name: 'kilogram' }),
         expect.objectContaining({ name: 'milliliter' }),
-        expect.objectContaining({ name: 'liter' })
-      ])
+        expect.objectContaining({ name: 'liter' }),
+      ]),
     );
   });
 
@@ -45,12 +45,12 @@ describe('getAllUnits', () => {
     `;
 
     const units = await getAllUnits();
-    
+
     expect(units[0]).toEqual(
       expect.objectContaining({
         id: expect.any(Number),
-        name: 'gram'
-      })
+        name: 'gram',
+      }),
     );
   });
 });

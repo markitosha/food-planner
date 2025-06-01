@@ -1,6 +1,7 @@
 import { neon } from '@neondatabase/serverless';
 import { resetDatabase } from '@/db/__tests__/setup';
 import { updateFamilyById } from '../updateById';
+import { revalidatePath } from 'next/cache';
 
 // Use test database URL from environment variable
 const sql = neon(process.env.TEST_DATABASE_URL!);
@@ -8,7 +9,6 @@ const sql = neon(process.env.TEST_DATABASE_URL!);
 describe('updateFamilyById', () => {
   beforeEach(async () => {
     await resetDatabase();
-    jest.clearAllMocks();
   });
 
   it('should update family name and trigger revalidation', async () => {
@@ -23,7 +23,7 @@ describe('updateFamilyById', () => {
     // Update the family
     await updateFamilyById({
       id: id.toString(),
-      name: 'Updated Smith Family'
+      name: 'Updated Smith Family',
     });
 
     // Verify family is updated
@@ -33,7 +33,6 @@ describe('updateFamilyById', () => {
     expect(updatedFamily[0].name).toBe('Updated Smith Family');
 
     // Verify revalidation was called
-    const { revalidatePath } = require('next/cache');
     expect(revalidatePath).toHaveBeenCalledWith('/families');
     expect(revalidatePath).toHaveBeenCalledWith('/plans');
   });
@@ -42,11 +41,10 @@ describe('updateFamilyById', () => {
     // Try to update non-existent family
     await updateFamilyById({
       id: '999',
-      name: 'New Name'
+      name: 'New Name',
     });
 
     // Verify revalidation was called
-    const { revalidatePath } = require('next/cache');
     expect(revalidatePath).toHaveBeenCalledWith('/families');
     expect(revalidatePath).toHaveBeenCalledWith('/plans');
   });
@@ -63,7 +61,7 @@ describe('updateFamilyById', () => {
     // Update with special characters
     await updateFamilyById({
       id: id.toString(),
-      name: `O'Connor Family`
+      name: `O'Connor Family`,
     });
 
     // Verify family is updated
@@ -73,8 +71,7 @@ describe('updateFamilyById', () => {
     expect(updatedFamily[0].name).toBe(`O'Connor Family`);
 
     // Verify revalidation was called
-    const { revalidatePath } = require('next/cache');
     expect(revalidatePath).toHaveBeenCalledWith('/families');
     expect(revalidatePath).toHaveBeenCalledWith('/plans');
   });
-}); 
+});

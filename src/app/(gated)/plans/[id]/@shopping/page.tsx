@@ -1,7 +1,7 @@
-import ActionButtons from '@/app/(gated)/plans/[id]/@shopping/components/ActionButtons';
-import CreateShoppingList from '@/app/(gated)/plans/[id]/@shopping/components/CreateShoppingList';
-import getMeals from '@/db/getMeals';
-import getShoppingList from '@/db/getShoppingList';
+import ActionButtons from './components/ActionButtons';
+import CreateShoppingList from './components/CreateShoppingList';
+import { getMeals } from '@/db/meal';
+import { getShoppingList } from '@/db/shopping';
 import { Box, Table, Text } from '@radix-ui/themes';
 
 export default async function Page({

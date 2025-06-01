@@ -42,7 +42,7 @@ describe('getAllFamilyParticipants', () => {
     expect(members[0]).toEqual({
       id: 'test-user-id',
       email: 'test@example.com',
-      name: 'Test User'
+      name: 'Test User',
     });
   });
-}); 
+});

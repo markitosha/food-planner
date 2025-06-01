@@ -85,12 +85,14 @@ describe('updateMealPlan', () => {
     formData.append('family_id', familyId.toString());
     formData.append('recipes', recipeId2.toString());
 
-    const meals: MealWithRecipeId[] = [{
-      id: mealId,
-      meal_plan_id: mealPlanId,
-      recipe_variant_id: variantId1,
-      recipe_id: recipeId1
-    }];
+    const meals: MealWithRecipeId[] = [
+      {
+        id: mealId,
+        meal_plan_id: mealPlanId,
+        recipe_variant_id: variantId1,
+        recipe_id: recipeId1,
+      },
+    ];
 
     await updateMealPlan(mealPlanId.toString(), formData, meals);
 
@@ -103,8 +105,8 @@ describe('updateMealPlan', () => {
       expect.objectContaining({
         name: 'Updated Meal Plan',
         description: 'Updated Description',
-        family_id: familyId
-      })
+        family_id: familyId,
+      }),
     );
 
     // Verify old meal was removed
@@ -131,17 +133,22 @@ describe('updateMealPlan', () => {
     formData.append('family_id', familyId.toString());
     formData.append('recipes', recipeId2.toString());
 
-    const meals: MealWithRecipeId[] = [{
-      id: mealId,
-      meal_plan_id: mealPlanId,
-      recipe_variant_id: variantId1,
-      recipe_id: recipeId1
-    }];
+    const meals: MealWithRecipeId[] = [
+      {
+        id: mealId,
+        meal_plan_id: mealPlanId,
+        recipe_variant_id: variantId1,
+        recipe_id: recipeId1,
+      },
+    ];
 
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
-    await expect(updateMealPlan(mealPlanId.toString(), formData, meals))
-      .rejects.toThrow('Database error');
+    await expect(
+      updateMealPlan(mealPlanId.toString(), formData, meals),
+    ).rejects.toThrow('Database error');
   });
-}); 
+});

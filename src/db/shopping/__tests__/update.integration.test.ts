@@ -9,7 +9,6 @@ describe('updateShoppingList Integration Test', () => {
   let familyId: number;
   let mealPlanId: number;
   let productId: number;
-  let unitId: number;
   let shoppingId: number;
 
   beforeEach(async () => {
@@ -40,12 +39,10 @@ describe('updateShoppingList Integration Test', () => {
     productId = productResult[0].id;
 
     // Create a unit
-    const unitResult = await sql`
+    await sql`
       INSERT INTO units (name)
       VALUES ('g')
-      RETURNING id
     `;
-    unitId = unitResult[0].id;
 
     // Create a shopping list item
     const shoppingResult = await sql`
@@ -61,13 +58,6 @@ describe('updateShoppingList Integration Test', () => {
       id: shoppingId,
       checked: true,
       deleted: false,
-      amount: '100 g',
-      product: 'Test Product',
-      product_id: productId,
-      name: 'Test Product',
-      unit: 'g',
-      unit_id: unitId,
-      comment: ''
     });
 
     expect(result.status).toBe('success');
@@ -88,13 +78,6 @@ describe('updateShoppingList Integration Test', () => {
       id: 999999,
       checked: true,
       deleted: false,
-      amount: '100 g',
-      product: 'Test Product',
-      product_id: productId,
-      name: 'Test Product',
-      unit: 'g',
-      unit_id: unitId,
-      comment: ''
     });
 
     expect(result.status).toBe('success'); // No error for non-existent item
@@ -108,16 +91,9 @@ describe('updateShoppingList Integration Test', () => {
       id: shoppingId,
       checked: true,
       deleted: false,
-      amount: '100 g',
-      product: 'Test Product',
-      product_id: productId,
-      name: 'Test Product',
-      unit: 'g',
-      unit_id: unitId,
-      comment: ''
     });
 
     expect(result.status).toBe('error');
     expect(result.error).toBeDefined();
   });
-}); 
+});

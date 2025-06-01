@@ -25,10 +25,7 @@ describe('collectUniqueUnits', () => {
   it('should use "stk" as default unit when unit is undefined', () => {
     const yields = [
       {
-        ingredients: [
-          { unit: undefined },
-          { unit: 'g' },
-        ],
+        ingredients: [{ unit: undefined }, { unit: 'g' }],
       },
     ];
 
@@ -67,4 +64,4 @@ describe('collectUniqueUnits', () => {
     const result = collectUniqueUnits(yields);
     expect(result).toEqual(new Set(['g', 'stk', 'ml']));
   });
-}); 
+});

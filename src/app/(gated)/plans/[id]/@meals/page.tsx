@@ -1,5 +1,5 @@
 import ItemsList from '@/components/items-list';
-import getMeals from '@/db/getMeals';
+import { getMeals } from '@/db/meal';
 
 export default async function Page({
   params,

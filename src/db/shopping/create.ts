@@ -19,4 +19,4 @@ export async function createShoppingList(mealPlanId: string) {
   revalidatePath('/plans');
 
   return data;
-} 
+}

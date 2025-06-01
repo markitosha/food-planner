@@ -25,10 +25,10 @@ describe('getFamilyById', () => {
     const id = result[0].id;
 
     const family = await getFamilyById(id.toString());
-    
+
     expect(family).toEqual({
       id: expect.any(Number),
-      name: 'Smith Family'
+      name: 'Smith Family',
     });
   });
 
@@ -42,10 +42,10 @@ describe('getFamilyById', () => {
     const id = result[0].id;
 
     const family = await getFamilyById(id.toString());
-    
+
     expect(family).toEqual({
       id: expect.any(Number),
-      name: `O'Connor Family`
+      name: `O'Connor Family`,
     });
   });
-}); 
+});

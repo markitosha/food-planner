@@ -39,8 +39,8 @@ describe('getMealPlanById', () => {
         id: mealPlanId,
         name: 'Test Meal Plan',
         description: 'Test Description',
-        family_id: familyId
-      })
+        family_id: familyId,
+      }),
     );
   });
 
@@ -53,12 +53,14 @@ describe('getMealPlanById', () => {
 
   it('should handle database errors gracefully', async () => {
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
     const result = await getMealPlanById(mealPlanId.toString());
 
     expect(result.status).toBe('error');
     expect(result.data).toBeNull();
-    expect(result.error).toBe('Couldn\'t get meal plan: Error: Database error');
+    expect(result.error).toBe("Couldn't get meal plan: Error: Database error");
   });
-}); 
+});

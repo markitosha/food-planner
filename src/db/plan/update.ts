@@ -5,7 +5,7 @@ import { Meal } from '@/db/schema';
 import { revalidatePath } from 'next/cache';
 
 type MealWithRecipeId = Meal & {
-  recipe_id: number;
+  recipe_id: string;
 };
 
 export async function updateMealPlan(

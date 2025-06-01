@@ -26,13 +26,13 @@ describe('getAllProducts', () => {
     `;
 
     const products = await getAllProducts();
-    
+
     expect(products).toHaveLength(4);
-    expect(products.map(p => p.name)).toEqual([
+    expect(products.map((p) => p.name)).toEqual([
       'apple',
       'banana',
       'carrot',
-      'zucchini'
+      'zucchini',
     ]);
   });
 
@@ -43,10 +43,10 @@ describe('getAllProducts', () => {
     `;
 
     const products = await getAllProducts();
-    
+
     expect(products[0]).toEqual({
       id: expect.any(Number),
-      name: 'apple'
+      name: 'apple',
     });
   });
 
@@ -60,12 +60,12 @@ describe('getAllProducts', () => {
     `;
 
     const products = await getAllProducts();
-    
+
     expect(products).toHaveLength(3);
-    expect(products.map(p => p.name)).toEqual([
+    expect(products.map((p) => p.name)).toEqual([
       'café',
       'crème brûlée',
-      'jalapeño'
+      'jalapeño',
     ]);
   });
-}); 
+});

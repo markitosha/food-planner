@@ -5,7 +5,7 @@ import { MealPlan } from '@/db/schema';
 import { DbReturn } from '@/db/types';
 
 export async function getMealPlanById(
-  id: string
+  id: string,
 ): Promise<DbReturn<MealPlan | null>> {
   try {
     const sql = await getDatabase();
@@ -17,13 +17,13 @@ export async function getMealPlanById(
 
     return {
       data: data.at(0) || null,
-      status: 'success'
+      status: 'success',
     };
   } catch (error: any) {
     return {
       data: null,
       status: 'error',
-      error: `Couldn't get meal plan: ${error}`
+      error: `Couldn't get meal plan: ${error}`,
     };
   }
-} 
+}

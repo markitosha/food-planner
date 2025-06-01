@@ -17,7 +17,7 @@ describe('addFamily', () => {
     // Verify family was created
     expect(family).toEqual({
       id: expect.any(Number),
-      name: 'Family'
+      name: 'Family',
     });
 
     // Verify family exists in database
@@ -35,4 +35,4 @@ describe('addFamily', () => {
     `;
     expect(familyMember).toHaveLength(1);
   });
-}); 
+});

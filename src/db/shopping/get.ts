@@ -1,9 +1,15 @@
 'use server';
 
 import getDatabase from '@/db/utils/getDatabase';
-import { ShoppingIngredient } from '@/db/types';
+import { Shopping } from '@/db/schema';
 
-export async function getShoppingList(id: string) {
+export type ShoppingWithProduct = Shopping & {
+  name: string;
+};
+
+export async function getShoppingList(
+  id: string,
+): Promise<ShoppingWithProduct[]> {
   const sql = await getDatabase();
   const data = (await sql`SELECT
         products.name,
@@ -15,7 +21,7 @@ export async function getShoppingList(id: string) {
     FROM shopping
       JOIN products on shopping.product_id = products.id
     where meal_plan_id=${id} and deleted = false
-    ORDER BY checked, name;`) as ShoppingIngredient[];
+    ORDER BY checked, name;`) as ShoppingWithProduct[];
 
   return data;
-} 
+}

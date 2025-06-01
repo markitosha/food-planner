@@ -8,7 +8,7 @@ export function EditableText({
   onBlur,
   type = 'textarea',
 }: {
-  children: string | number;
+  children: React.ReactNode;
   onBlur?: (value: string) => void;
   type?: 'input' | 'textarea';
 }) {
@@ -26,7 +26,7 @@ export function EditableText({
     return (
       <TextArea
         ref={inputRef as Ref<HTMLTextAreaElement>}
-        defaultValue={children.toString()}
+        defaultValue={children?.toString()}
         onBlur={(event) => {
           onBlur?.(event.target.value);
           value.current = event.target.value;
@@ -40,7 +40,7 @@ export function EditableText({
     return (
       <TextField.Root
         ref={inputRef as Ref<HTMLInputElement>}
-        defaultValue={children.toString()}
+        defaultValue={children?.toString()}
         onBlur={(event) => {
           onBlur?.(event.target.value);
           value.current = event.target.value;

@@ -1,8 +1,8 @@
-import { RecipeSummary } from '@/db/types';
 import { Badge, Card, Flex, Inset, Text } from '@radix-ui/themes';
 import Image from 'next/image';
+import type { RecipeWithVariantCount } from '@/db/recipe';
 
-export function RecipeCard({ recipe }: { recipe: RecipeSummary }) {
+export function RecipeCard({ recipe }: { recipe: RecipeWithVariantCount }) {
   return (
     <Card variant={'classic'} asChild>
       <a href={`/recipes/${recipe.id}`}>

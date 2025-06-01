@@ -38,14 +38,14 @@ describe('getAllPlans', () => {
         expect.objectContaining({
           name: 'Test Meal Plan 1',
           description: 'Test Description 1',
-          family_id: familyId
+          family_id: familyId,
         }),
         expect.objectContaining({
           name: 'Test Meal Plan 2',
           description: 'Test Description 2',
-          family_id: familyId
-        })
-      ])
+          family_id: familyId,
+        }),
+      ]),
     );
   });
 
@@ -58,9 +58,10 @@ describe('getAllPlans', () => {
 
   it('should handle database errors gracefully', async () => {
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
-    await expect(getAllPlans())
-      .rejects.toThrow('Database error');
+    await expect(getAllPlans()).rejects.toThrow('Database error');
   });
-}); 
+});

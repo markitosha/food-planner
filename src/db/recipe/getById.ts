@@ -4,10 +4,10 @@ import getDatabase from '@/db/utils/getDatabase';
 import { DbReturn } from '@/db/types';
 import { Recipe, Step, RecipeVariant } from '@/db/schema';
 
-type FullRecipe = Recipe & {
+export type FullRecipe = Recipe & {
   steps: Step[];
   variants: RecipeVariant[];
-}
+};
 
 export async function getRecipeById(
   id: string,

@@ -2,8 +2,8 @@ import { RecipeImage } from './recipe-image';
 import { EditableName } from './editable-name';
 import { EditableSubtitle } from './editable-subtitle';
 import { RemoveButton } from './remove-button';
-import { FullRecipe } from '@/db/types';
 import { Card, Flex, Inset } from '@radix-ui/themes';
+import { FullRecipe } from '@/db/recipe';
 
 export function HeaderCard({ recipe }: { recipe: FullRecipe }) {
   return (

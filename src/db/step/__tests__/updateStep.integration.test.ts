@@ -47,7 +47,7 @@ describe('updateStep', () => {
       step_index: 1,
       instruction: 'Original instruction',
       image_url: null,
-      recipe_id: recipeId
+      recipe_id: recipeId,
     };
 
     await updateStep(step, 'Updated instruction', recipeId.toString());
@@ -66,13 +66,16 @@ describe('updateStep', () => {
       step_index: 1,
       instruction: 'Original instruction',
       image_url: null,
-      recipe_id: recipeId
+      recipe_id: recipeId,
     };
 
     // Mock database error
-    (getDatabase as jest.Mock).mockRejectedValueOnce(new Error('Database error'));
+    (getDatabase as jest.Mock).mockRejectedValueOnce(
+      new Error('Database error'),
+    );
 
-    await expect(updateStep(step, 'Updated instruction', recipeId.toString()))
-      .rejects.toThrow('Database error');
+    await expect(
+      updateStep(step, 'Updated instruction', recipeId.toString()),
+    ).rejects.toThrow('Database error');
   });
-}); 
+});

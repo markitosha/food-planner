@@ -31,7 +31,10 @@ describe('addMemberToFamilyByEmail', () => {
       RETURNING id
     `;
 
-    const result = await addMemberToFamilyByEmail(family[0].id.toString(), 'test@example.com');
+    const result = await addMemberToFamilyByEmail(
+      family[0].id.toString(),
+      'test@example.com',
+    );
     expect(result).toBe('');
     expect(revalidatePath).toHaveBeenCalledWith('/families');
 
@@ -51,7 +54,10 @@ describe('addMemberToFamilyByEmail', () => {
       RETURNING id
     `;
 
-    const result = await addMemberToFamilyByEmail(family[0].id.toString(), 'nonexistent@example.com');
+    const result = await addMemberToFamilyByEmail(
+      family[0].id.toString(),
+      'nonexistent@example.com',
+    );
     expect(result).toBe('User not found or already in family');
     expect(revalidatePath).toHaveBeenCalledWith('/families');
   });
@@ -68,7 +74,10 @@ describe('addMemberToFamilyByEmail', () => {
     expect(revalidatePath).toHaveBeenCalledWith('/families');
 
     // Try to add same member again
-    const result = await addMemberToFamilyByEmail(family[0].id.toString(), 'test@example.com');
+    const result = await addMemberToFamilyByEmail(
+      family[0].id.toString(),
+      'test@example.com',
+    );
     expect(result).toBe('User not found or already in family');
     expect(revalidatePath).toHaveBeenCalledWith('/families');
 
@@ -80,4 +89,4 @@ describe('addMemberToFamilyByEmail', () => {
     `;
     expect(members).toHaveLength(1);
   });
-}); 
+});
