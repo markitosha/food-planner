@@ -28,8 +28,6 @@ describe('createRecipeFromJSON Integration Test', () => {
       family_id: familyId
     });
 
-    console.log(result);
-
     expect(result.status).toBe('success');
     expect(result.data).toBeDefined();
 
