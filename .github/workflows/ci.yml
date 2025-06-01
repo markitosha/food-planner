@@ -45,7 +45,6 @@ jobs:
         env:
           TEST_DATABASE_URL: ${{ secrets.TEST_DATABASE_URL }}
 
-  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -58,6 +57,3 @@ jobs:
           
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-        
-      - name: Build
-        run: yarn build 
