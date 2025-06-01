@@ -1,14 +1,9 @@
 import { neon } from '@neondatabase/serverless';
 
 import { resetDatabase } from '@/db/__tests__/setup';
-import { Meal } from '@/db/schema';
 import getDatabase from '@/db/utils/getDatabase';
 
-import { updateMealPlan } from '../update';
-
-type MealWithRecipeId = Meal & {
-  recipe_id: number;
-};
+import { updateMealPlan, MealWithRecipeId } from '../update';
 
 // Use test database URL from environment variable
 const sql = neon(process.env.TEST_DATABASE_URL!);
@@ -16,8 +11,8 @@ const sql = neon(process.env.TEST_DATABASE_URL!);
 describe('updateMealPlan', () => {
   let familyId: number;
   let mealPlanId: number;
-  let recipeId1: number;
-  let recipeId2: number;
+  let recipeId1: string;
+  let recipeId2: string;
   let variantId1: number;
   let variantId2: number;
   let mealId: number;
