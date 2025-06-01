@@ -1,7 +1,7 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
 import { Shopping } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 
 export type ShoppingWithProduct = Shopping & {
   name: string;

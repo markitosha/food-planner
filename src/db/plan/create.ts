@@ -1,8 +1,9 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function createNewMealPlan(formData: FormData) {
   const name = formData.get('name') as string;

@@ -1,6 +1,7 @@
-import { HFRecipe } from './createRecipeFromJSON';
-import getDatabase from '@/db/utils/getDatabase';
 import { getName } from '@/db/utils';
+import getDatabase from '@/db/utils/getDatabase';
+
+import { HFRecipe } from './createRecipeFromJSON';
 
 export default async function updateProducts(recipe: HFRecipe) {
   const sql = await getDatabase();

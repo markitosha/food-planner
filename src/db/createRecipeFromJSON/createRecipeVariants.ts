@@ -1,6 +1,7 @@
-import { HFRecipe } from './createRecipeFromJSON';
-import getDatabase from '@/db/utils/getDatabase';
 import { createVariantNames } from '@/db/utils';
+import getDatabase from '@/db/utils/getDatabase';
+
+import { HFRecipe } from './createRecipeFromJSON';
 
 export default async function createRecipeVariants(
   recipe: HFRecipe,

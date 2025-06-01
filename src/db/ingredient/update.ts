@@ -1,8 +1,9 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
-import { Ingredient } from '@/db/schema';
 import { revalidatePath } from 'next/cache';
+
+import { Ingredient } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function updateIngredient(ingredient: Ingredient) {
   const sql = await getDatabase();

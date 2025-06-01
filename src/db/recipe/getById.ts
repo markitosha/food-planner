@@ -1,8 +1,8 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
-import { DbReturn } from '@/db/types';
 import { Recipe, Step, RecipeVariant } from '@/db/schema';
+import { DbReturn } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
 
 export type FullRecipe = Recipe & {
   steps: Step[];

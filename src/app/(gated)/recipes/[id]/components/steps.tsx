@@ -1,13 +1,15 @@
 'use client';
 
-import { StepEditableText } from './step-editable-text';
-import { Step } from '@/db/schema';
-import { updateStepIndex } from '@/db/step';
 import { Flex, IconButton, Table } from '@radix-ui/themes';
 import { ArrowDown, ArrowUp } from 'lucide-react';
 import Image from 'next/image';
 import { useState } from 'react';
 import { toast } from 'sonner';
+
+import { Step } from '@/db/schema';
+import { updateStepIndex } from '@/db/step';
+
+import { StepEditableText } from './step-editable-text';
 
 export function Steps({
   steps,

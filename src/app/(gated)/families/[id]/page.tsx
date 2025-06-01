@@ -1,10 +1,12 @@
+import { Flex, Heading, Table } from '@radix-ui/themes';
+
+import { getFamilyById } from '@/db/family';
+import { getAllFamilyMembers } from '@/db/family_members';
+
 import AddMember from './components/add-member';
 import DeleteButton from './components/delete-button';
-import RemoveButton from './components/remove-button';
-import { getAllFamilyMembers } from '@/db/family_members';
 import EditableName from './components/editable-name';
-import { getFamilyById } from '@/db/family';
-import { Flex, Heading, Table } from '@radix-ui/themes';
+import RemoveButton from './components/remove-button';
 
 export default async function Page({
   params,

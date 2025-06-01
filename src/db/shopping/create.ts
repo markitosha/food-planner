@@ -1,8 +1,10 @@
 'use server';
 
-import { getAllIngredients } from './getAllIngredients';
-import getDatabase from '@/db/utils/getDatabase';
 import { revalidatePath } from 'next/cache';
+
+import getDatabase from '@/db/utils/getDatabase';
+
+import { getAllIngredients } from './getAllIngredients';
 
 export async function createShoppingList(mealPlanId: string) {
   const ingredients = await getAllIngredients(mealPlanId);

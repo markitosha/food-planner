@@ -1,7 +1,7 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
 import { Family } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 import { stackServerApp } from '@/stack';
 
 export async function addFamily() {

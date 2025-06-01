@@ -1,9 +1,5 @@
 'use client';
 
-import ItemsList from '@/components/items-list';
-import { MealWithRecipe } from '@/db/meal';
-import { createNewMealPlan, updateMealPlan } from '@/db/plan';
-import { Family, MealPlan, Recipe } from '@/db/schema';
 import {
   Button,
   Flex,
@@ -12,6 +8,11 @@ import {
   Separator,
   TextField,
 } from '@radix-ui/themes';
+
+import ItemsList from '@/components/items-list';
+import { MealWithRecipe } from '@/db/meal';
+import { createNewMealPlan, updateMealPlan } from '@/db/plan';
+import { Family, MealPlan, Recipe } from '@/db/schema';
 
 type Props = {
   recipes: Recipe[];

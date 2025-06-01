@@ -1,5 +1,6 @@
 import { Badge, Card, Flex, Inset, Text } from '@radix-ui/themes';
 import Image from 'next/image';
+
 import type { RecipeWithVariantCount } from '@/db/recipe';
 
 export function RecipeCard({ recipe }: { recipe: RecipeWithVariantCount }) {

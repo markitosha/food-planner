@@ -1,7 +1,8 @@
 'use client';
 
-import { deleteFamilyById } from '@/db/family';
 import { Button } from '@radix-ui/themes';
+
+import { deleteFamilyById } from '@/db/family';
 
 export default function DeleteButton({ familyId }: { familyId: number }) {
   return (

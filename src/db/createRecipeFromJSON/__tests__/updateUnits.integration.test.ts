@@ -1,8 +1,10 @@
 import { neon } from '@neondatabase/serverless';
+
 import { resetDatabase } from '@/db/__tests__/setup';
-import updateUnits from '../updateUnits';
 import getDatabase from '@/db/utils/getDatabase';
+
 import { HFRecipe } from '../createRecipeFromJSON';
+import updateUnits from '../updateUnits';
 
 // Use test database URL from environment variable
 const sql = neon(process.env.TEST_DATABASE_URL!);

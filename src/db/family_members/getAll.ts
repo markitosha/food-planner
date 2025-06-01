@@ -1,7 +1,7 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
 import { FamilyMember } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 
 type FamilyMemberWithUser = FamilyMember & {
   id: string;

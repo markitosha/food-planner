@@ -1,8 +1,8 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
 import { MealPlan } from '@/db/schema';
 import { DbReturn } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function getMealPlanById(
   id: string,

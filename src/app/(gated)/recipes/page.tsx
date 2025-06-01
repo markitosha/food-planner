@@ -1,5 +1,6 @@
 import { Error } from '@/components';
 import { getAllRecipes } from '@/db/recipe';
+
 import { RecipeHeading, RecipeList } from './components';
 
 export default async function Page() {

@@ -1,8 +1,8 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
-import { DbReturn } from '@/db/types';
 import { Recipe } from '@/db/schema';
+import { DbReturn } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
 
 export type RecipeWithVariantCount = Recipe & {
   variant_count: string;

@@ -1,8 +1,9 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
-import { Meal } from '@/db/schema';
 import { revalidatePath } from 'next/cache';
+
+import { Meal } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 
 type MealWithRecipeId = Meal & {
   recipe_id: string;

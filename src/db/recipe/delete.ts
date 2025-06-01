@@ -1,9 +1,10 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
-import { DbReturn } from '@/db/types';
-import { Recipe } from '@/db/schema';
 import { revalidatePath } from 'next/cache';
+
+import { Recipe } from '@/db/schema';
+import { DbReturn } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function deleteRecipe(
   id: number,

@@ -1,6 +1,7 @@
-import { getMealPlanById } from '@/db/plan';
 import { Box, Container, Heading, Section, Tabs } from '@radix-ui/themes';
 import { ReactNode } from 'react';
+
+import { getMealPlanById } from '@/db/plan';
 
 export default async function Layout({
   params,

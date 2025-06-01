@@ -1,9 +1,12 @@
 import { neon } from '@neondatabase/serverless';
-import { resetDatabase } from '@/db/__tests__/setup';
-import { createRecipeFromJSON } from '../createRecipeFromJSON';
 import { put } from '@vercel/blob';
-import { realRecipeData } from './testData';
+
+import { resetDatabase } from '@/db/__tests__/setup';
 import getDatabase from '@/db/utils/getDatabase';
+
+import { createRecipeFromJSON } from '../createRecipeFromJSON';
+
+import { realRecipeData } from './testData';
 
 // Use test database URL from environment variable
 const sql = neon(process.env.TEST_DATABASE_URL!);

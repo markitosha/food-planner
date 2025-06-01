@@ -1,7 +1,9 @@
-import { HFRecipe } from './createRecipeFromJSON';
+import { NeonQueryFunction } from '@neondatabase/serverless';
+
 import { mapIngredientNames } from '@/db/utils';
 import getDatabase from '@/db/utils/getDatabase';
-import { NeonQueryFunction } from '@neondatabase/serverless';
+
+import { HFRecipe } from './createRecipeFromJSON';
 
 async function createVariantIngredients(
   ingredients: { id: string; unit: string; amount: number }[],

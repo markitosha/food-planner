@@ -1,8 +1,10 @@
-import ActionButtons from './components/ActionButtons';
-import CreateShoppingList from './components/CreateShoppingList';
+import { Box, Table, Text } from '@radix-ui/themes';
+
 import { getMeals } from '@/db/meal';
 import { getShoppingList } from '@/db/shopping';
-import { Box, Table, Text } from '@radix-ui/themes';
+
+import ActionButtons from './components/ActionButtons';
+import CreateShoppingList from './components/CreateShoppingList';
 
 export default async function Page({
   params,

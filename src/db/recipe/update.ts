@@ -1,8 +1,9 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
-import { DbReturn } from '@/db/types';
 import { revalidatePath } from 'next/cache';
+
+import { DbReturn } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function updateRecipe({
   name,

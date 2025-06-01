@@ -1,7 +1,7 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
 import { Meal } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
 
 export type MealWithRecipe = Meal & {
   recipe_variant_id: string;

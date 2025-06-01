@@ -1,8 +1,10 @@
 import { neon } from '@neondatabase/serverless';
+
 import { resetDatabase } from '@/db/__tests__/setup';
-import { updateMealPlan } from '../update';
-import getDatabase from '@/db/utils/getDatabase';
 import { Meal } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
+
+import { updateMealPlan } from '../update';
 
 type MealWithRecipeId = Meal & {
   recipe_id: number;

@@ -1,9 +1,10 @@
 'use server';
 
-import getDatabase from '@/db/utils/getDatabase';
 import { revalidatePath } from 'next/cache';
-import { DbReturn } from '@/db/types';
+
 import { Shopping } from '@/db/schema';
+import { DbReturn } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
 
 export async function updateShoppingList({
   checked,

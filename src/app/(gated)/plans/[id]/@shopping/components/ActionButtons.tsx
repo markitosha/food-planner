@@ -1,8 +1,9 @@
 'use client';
 
-import { ShoppingWithProduct, updateShoppingList } from '@/db/shopping';
 import { CheckIcon, Cross1Icon, TrashIcon } from '@radix-ui/react-icons';
 import { IconButton } from '@radix-ui/themes';
+
+import { ShoppingWithProduct, updateShoppingList } from '@/db/shopping';
 
 type Props = ShoppingWithProduct;
 

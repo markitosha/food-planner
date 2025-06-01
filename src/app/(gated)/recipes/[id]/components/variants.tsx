@@ -1,10 +1,12 @@
 'use client';
 
-import { FullRecipe } from '@/db/recipe';
-import { Ingredients } from './ingredients';
 import { Card, Flex, IconButton, SegmentedControl } from '@radix-ui/themes';
 import { Edit } from 'lucide-react';
 import { useState } from 'react';
+
+import { FullRecipe } from '@/db/recipe';
+
+import { Ingredients } from './ingredients';
 
 export function Variants({ recipe }: { recipe: FullRecipe }) {
   const [current, setCurrent] = useState(recipe.variants[0]?.id.toString());

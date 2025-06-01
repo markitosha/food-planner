@@ -9,10 +9,10 @@
     "lint": "next lint",
     "test": "jest -c jest.unit.config.js",
     "test:unit": "jest -c jest.unit.config.js",
-    "test:integration": "dotenv -e .env.test -- jest -c jest.integration.config.js -w 1",
-    "test:integration:ci": "jest -c jest.integration.config.js",
-    "test:all": "npm run test:unit && npm run test:integration",
-    "test:coverage": "npm run test:integration --coverage"
+    "test:integration": "dotenv -e .env.test -- yarn test:integration:ci",
+    "test:integration:ci": "jest -c jest.integration.config.js  -w 1",
+    "test:all": "yarn test:unit && yarn test:integration",
+    "test:coverage": "yarn test:integration --coverage"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.0.0",

@@ -1,8 +1,9 @@
 'use client';
 
+import { Text } from '@radix-ui/themes';
+
 import { EditableText } from '@/components';
 import { updateRecipe } from '@/db/recipe';
-import { Text } from '@radix-ui/themes';
 
 export function EditableSubtitle({
   id,

@@ -1,10 +1,11 @@
 'use client';
 
+import { Button, Flex, Heading, TextArea } from '@radix-ui/themes';
 import { redirect } from 'next/navigation';
 import { useState } from 'react';
-import { createRecipeFromJSON } from '@/db/createRecipeFromJSON';
-import { Button, Flex, Heading, TextArea } from '@radix-ui/themes';
 import { toast } from 'sonner';
+
+import { createRecipeFromJSON } from '@/db/createRecipeFromJSON';
 
 export default function Page() {
   const [loading, setLoading] = useState(false);

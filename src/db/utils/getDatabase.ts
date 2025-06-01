@@ -1,5 +1,6 @@
-import { stackServerApp } from '@/stack';
 import { neon } from '@neondatabase/serverless';
+
+import { stackServerApp } from '@/stack';
 
 export default async function getDatabase(
   { publicRequest } = {

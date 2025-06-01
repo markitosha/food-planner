@@ -1,9 +1,11 @@
 import { neon } from '@neondatabase/serverless';
-import { resetDatabase } from '@/db/__tests__/setup';
-import { updateStep } from '../updateStep';
 import { revalidatePath } from 'next/cache';
-import getDatabase from '@/db/utils/getDatabase';
+
+import { resetDatabase } from '@/db/__tests__/setup';
 import { Step } from '@/db/schema';
+import getDatabase from '@/db/utils/getDatabase';
+
+import { updateStep } from '../updateStep';
 
 // Use test database URL from environment variable
 const sql = neon(process.env.TEST_DATABASE_URL!);
