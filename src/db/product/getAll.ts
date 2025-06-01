@@ -1,7 +1,7 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { Product } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
+import { Product } from '@/db/schema';
 
 export async function getAllProducts() {
   const sql = await getDatabase();

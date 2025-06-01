@@ -1,4 +1,4 @@
-import getPlan from '@/db/getPlan';
+import { getMealPlanById } from '@/db/plan';
 import { Box, Container, Heading, Section, Tabs } from '@radix-ui/themes';
 import { ReactNode } from 'react';
 
@@ -14,7 +14,7 @@ export default async function Layout({
   edit: ReactNode;
 }) {
   const { id } = await params;
-  const plan = await getPlan(id);
+  const { data: plan } = await getMealPlanById(id);
 
   return (
     <Section size={'1'}>

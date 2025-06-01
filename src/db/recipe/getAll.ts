@@ -1,9 +1,14 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { DbReturn, RecipeSummary } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
+import { DbReturn } from '@/db/types';
+import { Recipe } from '@/db/schema';
 
-export async function getAllRecipes(): Promise<DbReturn<RecipeSummary[]>> {
+type RecipeWithVariantCount = Recipe & {
+  variant_count: string;
+};
+
+export async function getAllRecipes(): Promise<DbReturn<RecipeWithVariantCount[]>> {
   try {
     const sql = await getDatabase();
     const data = (await sql`SELECT
@@ -15,7 +20,7 @@ export async function getAllRecipes(): Promise<DbReturn<RecipeSummary[]>> {
                  FROM recipes r
                         LEFT JOIN recipe_variants rv ON rv.recipe_id = r.id
                  GROUP BY r.id, r.name, r.description, r.image_url
-                 ORDER BY r.id DESC;`) as RecipeSummary[];
+                 ORDER BY r.id DESC;`) as RecipeWithVariantCount[];
 
     return {
       data,

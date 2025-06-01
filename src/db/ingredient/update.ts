@@ -1,10 +1,10 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { ShoppingIngredient } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
+import { Ingredient } from '@/db/schema';
 import { revalidatePath } from 'next/cache';
 
-export async function updateIngredient(ingredient: ShoppingIngredient) {
+export async function updateIngredient(ingredient: Ingredient) {
   const sql = await getDatabase();
 
   await sql`UPDATE ingredients

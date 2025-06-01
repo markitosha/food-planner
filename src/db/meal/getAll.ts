@@ -1,9 +1,9 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
+import getDatabase from '@/db/utils/getDatabase';
 import { Meal } from '@/db/types';
 
-async function getMeals(id: string) {
+export async function getMeals(id: string) {
   const sql = await getDatabase();
   const data = (await sql`SELECT
                  meals.id,
@@ -19,5 +19,3 @@ async function getMeals(id: string) {
 
   return data;
 }
-
-export default getMeals;

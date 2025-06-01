@@ -1,17 +1,9 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { ShoppingIngredient } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
+import { IngredientRaw, ShoppingIngredient } from '@/db/types';
 
-export type IngredientRaw = {
-  amount: string;
-  product_id: number;
-  name: string;
-  unit: string;
-  checked: boolean;
-};
-
-async function getAllIngredients(mealPlanId: string) {
+export async function getAllIngredients(mealPlanId: string) {
   const sql = await getDatabase();
   const rawData = (await sql`SELECT
                             products.id AS product_id,
@@ -19,7 +11,7 @@ async function getAllIngredients(mealPlanId: string) {
                             SUM(ingredients.amount) AS amount,
                             units.name AS unit,
                             units.id AS unit_id,
-                            COALESCE(shopping.checked, FALSE) AS checked  -- Ensure checked is always returned
+                            COALESCE(shopping.checked, FALSE) AS checked
                           FROM meals
                                  JOIN recipe_variants ON meals.recipe_variant_id = recipe_variants.id
                                  JOIN ingredients ON recipe_variants.id = ingredients.recipe_variant_id
@@ -53,6 +45,4 @@ async function getAllIngredients(mealPlanId: string) {
   }, [] as Partial<ShoppingIngredient>[]);
 
   return data;
-}
-
-export default getAllIngredients;
+} 

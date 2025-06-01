@@ -1,7 +1,7 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { Family } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
+import { Family } from '@/db/schema';
 
 export async function getAllFamilies(): Promise<Family[]> {
   const sql = await getDatabase();

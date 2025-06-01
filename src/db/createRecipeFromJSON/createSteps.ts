@@ -1,5 +1,5 @@
-import { HFRecipe } from '@/db/createRecipeFromJSON/createRecipeFromJSON';
-import getDatabase from '@/db/getDatabase';
+import { HFRecipe } from './createRecipeFromJSON';
+import getDatabase from '@/db/utils/getDatabase';
 import { put } from '@vercel/blob';
 
 export default async function createSteps(recipe: HFRecipe, id: number) {

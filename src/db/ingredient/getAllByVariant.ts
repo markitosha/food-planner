@@ -1,11 +1,17 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { DbReturn, Ingredient } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
+import { DbReturn } from '@/db/types';
+import { Ingredient } from '@/db/schema';
+
+type IngredientWithProductAndUnit = Ingredient & {
+  product: string;
+  unit: string;
+};
 
 export async function getIngredientsByVariant(
   variantId: string,
-): Promise<DbReturn<Ingredient[]>> {
+): Promise<DbReturn<IngredientWithProductAndUnit[]>> {
   try {
     const sql = await getDatabase();
 
@@ -21,7 +27,7 @@ export async function getIngredientsByVariant(
                                                         JOIN products p ON i.product_id = p.id
                                                         JOIN units u ON i.unit_id = u.id
                                                WHERE i.recipe_variant_id = ${variantId}
-                                               ORDER BY p.name;`) as Ingredient[];
+                                               ORDER BY p.name;`) as IngredientWithProductAndUnit[];
 
     return {
       data,

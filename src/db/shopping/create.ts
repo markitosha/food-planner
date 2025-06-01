@@ -1,10 +1,10 @@
 'use server';
 
-import getAllIngredients from '@/db/getAllIngredients';
-import getDatabase from '@/db/getDatabase';
+import { getAllIngredients } from './getAllIngredients';
+import getDatabase from '@/db/utils/getDatabase';
 import { revalidatePath } from 'next/cache';
 
-export default async function createShoppingList(mealPlanId: string) {
+export async function createShoppingList(mealPlanId: string) {
   const ingredients = await getAllIngredients(mealPlanId);
 
   const sql = await getDatabase();
@@ -16,7 +16,7 @@ export default async function createShoppingList(mealPlanId: string) {
     ),
   );
 
-  revalidatePath('/plans/1@shopping');
+  revalidatePath('/plans');
 
   return data;
-}
+} 

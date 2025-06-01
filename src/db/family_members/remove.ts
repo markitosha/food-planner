@@ -1,9 +1,9 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
+import getDatabase from '@/db/utils/getDatabase';
 import { revalidatePath } from 'next/cache';
 
-export async function removeMemberById(memberId: number, familyId: string) {
+export async function removeMemberById(memberId: string, familyId: string) {
   const sql = await getDatabase();
 
   await sql`

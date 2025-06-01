@@ -1,11 +1,11 @@
 'use server';
 
-import getDatabase from '@/db/getDatabase';
-import { FamilyMemberUser } from '@/db/types';
+import getDatabase from '@/db/utils/getDatabase';
+import { FamilyMember } from '@/db/schema';
 
-export async function getAllFamilyParticipants(
+export async function getAllFamilyMembers(
   familyId: string,
-): Promise<FamilyMemberUser[]> {
+): Promise<FamilyMember[]> {
   const sql = await getDatabase();
   const data = await sql`SELECT
                 u.id,
@@ -15,5 +15,5 @@ export async function getAllFamilyParticipants(
                      JOIN neon_auth.users_sync u ON fm.user_id = u.id
               WHERE fm.family_id = ${familyId};`;
 
-  return data as FamilyMemberUser[];
+  return data as FamilyMember[];
 }

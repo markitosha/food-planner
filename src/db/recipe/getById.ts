@@ -1,7 +1,13 @@
 'use server';
 
-import getDatabase from '../getDatabase';
-import { DbReturn, FullRecipe, RecipeSummary, Step, Variant } from '../types';
+import getDatabase from '@/db/utils/getDatabase';
+import { DbReturn } from '@/db/types';
+import { Recipe, Step, RecipeVariant } from '@/db/schema';
+
+type FullRecipe = Recipe & {
+  steps: Step[];
+  variants: RecipeVariant[];
+}
 
 export async function getRecipeById(
   id: string,
@@ -9,11 +15,11 @@ export async function getRecipeById(
   try {
     const sql = await getDatabase();
     const recipe =
-      (await sql`SELECT name, description, id, image_url from recipes where id = ${id} LIMIT 1;`) as RecipeSummary[];
+      (await sql`SELECT name, description, id, image_url from recipes where id = ${id} LIMIT 1;`) as Recipe[];
     const steps =
       (await sql`SELECT * FROM steps WHERE recipe_id = ${id} ORDER BY step_index ASC;`) as Step[];
     const variants =
-      (await sql`SELECT * from recipe_variants where recipe_id = ${id};`) as Variant[];
+      (await sql`SELECT * from recipe_variants where recipe_id = ${id};`) as RecipeVariant[];
 
     return {
       data: {
@@ -27,7 +33,7 @@ export async function getRecipeById(
     return {
       data: null,
       status: 'error',
-      error: `Couldn't load recipe: ${error}`,
+      error: `Couldn't load recipe: ${error.message}`,
     };
   }
 }

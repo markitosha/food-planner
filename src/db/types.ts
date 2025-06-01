@@ -92,3 +92,11 @@ export type Ingredient = {
   unit_id: number;
   comment: string;
 };
+
+export type IngredientRaw = {
+  amount: string;
+  product_id: number;
+  name: string;
+  unit: string;
+  checked: boolean;
+};

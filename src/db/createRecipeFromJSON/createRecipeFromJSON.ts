@@ -29,8 +29,10 @@ export type HFRecipe = {
 
 export async function createRecipeFromJSON({
   hf_data,
+  family_id = 1,
 }: {
   hf_data: string;
+  family_id: number;
 }): Promise<DbReturn<number | null>> {
   let recipe: HFRecipe;
 
@@ -47,7 +49,7 @@ export async function createRecipeFromJSON({
   }
 
   try {
-    const id = await createRecipe(recipe);
+    const id = await createRecipe(recipe, family_id);
 
     const vData = await createRecipeVariants(recipe, id);
 
